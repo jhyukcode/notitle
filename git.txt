@@ -62,9 +62,3 @@ clone
  Local Folder : [루트]
 
 [clone]
-
-8. 실습 6 push 로컬저장소 .. 소스트리
- 1) [eclipse] 코드작성 or 수정
- 2) [소스트리] 스테이지에 올라가지 않는 파일 [*모두 스테이지에 올리기] [선택 내용 스테이지에 올리기] git add .
- 3) [commit] commit 메시지 - [커밋]
- 4) push 버튼
