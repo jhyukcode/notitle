@@ -1,4 +1,4 @@
-package com.company.java003;
+package com.company.java003_ex;
 
 import java.util.Scanner;
 
@@ -22,7 +22,7 @@ public class OperatorEx002 {
 		System.out.println(ch >= '0' && ch <= '9');
 //		Q4
 		System.out.println(((int)ch>=65?(int)ch<=90:false)||((int)ch>=97?(int)ch<=122:false));
-		System.out.println(ch>='A'&&ch<='Z'||ch>='a'&&ch<='z');
+		System.out.println('A'<=ch&&ch<='Z'||'a'<=ch&&ch<='z');
 		
 		sc.close();
 
