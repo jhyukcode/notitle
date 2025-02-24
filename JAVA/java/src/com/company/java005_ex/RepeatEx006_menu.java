@@ -31,8 +31,9 @@ public class RepeatEx006_menu {
 ///			Step3.추가
 ///			Step4.조회
 ///			Step5.입금
-			
+			sc.close();
 		}
+		
 	}
 
 }

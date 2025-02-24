@@ -48,10 +48,7 @@ public class Airplane {
 					System.out.print("· 회항일 MMDD : ");
 					airlineReturn=sc.next();
 					
-//					airlineFrom.equals(airlineFromTag)
-//					airlineTo.equals(arilineToTag)
-//					airlineDepart.equals(airlineDepartTag)
-//					airlineReturn.equals(airlineReturnTag)
+					
 					
 //					스캐너와 동일한 문자열의 항공편 출력
 					
