@@ -3,7 +3,7 @@ package miniproject;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Bank_1 {
+public class Bank_2 {
 
 	public static void main(String[] args) {
 
@@ -11,7 +11,7 @@ public class Bank_1 {
 		long balance = 0, deposit = 0, withdraw = 0;
 		char del = ' ';
 		String userId = "", userPwd = "", chkId = "", chkPwd = "";
-		String[] userInfo = new String[4];
+		String[] user_identification = new String[4];
 		String[] mainMenu = {"추가", "조회", "입금", "출금", "삭제"}; 
 		Scanner sc = new Scanner(System.in);
 
@@ -26,35 +26,55 @@ public class Bank_1 {
 
 			switch (menuSelect) {
 			case 1:
-				// 초기 정보 입력
-				System.out.print("ID 입력 : ");
-				userId = sc.next();
-				System.out.print("Password 입력 : ");
-				userPwd = sc.next();
-				System.out.print("나이 입력 : ");
-				age = sc.nextInt();
-				System.out.print("예치금 입력 : ");
-				balance = sc.nextLong();
+				// 계정 생성
+				for (;;) {
+					if (user_identification[0]==null) {
+						System.out.print("ID 생성 : ");
+						user_identification[0]=sc.next();
+						user_identification[1]=user_identification[0];
+						continue;
+					}
 
-				if (balance <= 0) {
-					System.out.print("계좌 생성 시 1원 이상이 입금되어야 합니다.\n");
+					if (user_identification[2]==null) {
+						System.out.print("비밀번호 생성 : ");
+						user_identification[1] = sc.next();
+						continue;
+					}
+
+					if (!user_identification[2].equals(user_identification[3])) {
+						System.out.print("비밀번호 확인 : ");
+						user_identification[2] = sc.next();
+						continue;
+					}
+					if (age<=0) {
+						System.out.print("나이 입력 : ");
+						age = sc.nextInt();
+						continue;
+					}
+					if (balance<=0) {
+						System.out.print("계좌 생성 시에는 반드시 예치금이 필요합니다.\n입금하실 금액을 입력해주세요. : ");
+						balance = sc.nextInt();
+						continue;
+					}
 					break;
 				}
-			
 				System.out.print("계좌가 성공적으로 생성되었습니다.\n");
 				break;
 			case 2:
 			case 3:
 			case 4:
 			case 5:
-				System.out.print("ID 입력 : ");
-				chkId = sc.next();
-				System.out.print("Pwd 입력 : ");
-				chkPwd = sc.next();
-
-				if (!(chkId.equals(userId) && chkPwd.equals(userPwd))) {
-					System.out.print("ID 또는 비밀번호가 일치하지 않습니다.\n");
-					break;
+//				System.out.print("ID 입력 : ");
+//				chkId = sc.next();
+//				System.out.print("Pwd 입력 : ");
+//				chkPwd = sc.next();
+//
+//				if (!(chkId.equals(userId) && chkPwd.equals(userPwd))) {
+//					System.out.print("ID 또는 비밀번호가 일치하지 않습니다.\n");
+//					break;
+//				}
+				if (!(user_identification[0].equals(user_identification[1]))) {
+					
 				}
 
 				switch (menuSelect) {
