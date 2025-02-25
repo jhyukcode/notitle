@@ -37,13 +37,13 @@ public class Bank_2 {
 
 					if (user_identification[2]==null) {
 						System.out.print("비밀번호 생성 : ");
-						user_identification[1] = sc.next();
+						user_identification[2] = sc.next();
 						continue;
 					}
 
 					if (!user_identification[2].equals(user_identification[3])) {
 						System.out.print("비밀번호 확인 : ");
-						user_identification[2] = sc.next();
+						user_identification[3] = sc.next();
 						continue;
 					}
 					if (age<=0) {
