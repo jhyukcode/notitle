@@ -1,4 +1,4 @@
-package com.company.java008_ex;
+package com.company.java009_ex;
 
 public class MethodEx005 {
 
