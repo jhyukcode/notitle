@@ -1,4 +1,4 @@
-package method;
+package method_repeat;
 
 public class Q1 {
 	public static void hello() { System.out.println("hello!"); }

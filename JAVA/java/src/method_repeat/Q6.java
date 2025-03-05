@@ -1,4 +1,4 @@
-package method;
+package method_repeat;
 
 public class Q6 {
 	public static int abs (int a) {

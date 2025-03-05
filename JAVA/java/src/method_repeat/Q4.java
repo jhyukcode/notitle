@@ -1,4 +1,4 @@
-package method;
+package method_repeat;
 
 public class Q4 {
 	public static void sum (int a, int b) {

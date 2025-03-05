@@ -1,4 +1,4 @@
-package method;
+package method_repeat;
 
 public class Q2 {
 	public static String hello(String a) { return a+"~ hello!"; }

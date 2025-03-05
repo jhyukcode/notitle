@@ -1,4 +1,4 @@
-package method;
+package method_repeat;
 
 public class Q5 {
 	public static void show (int a, char b) {
