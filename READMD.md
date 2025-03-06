@@ -57,3 +57,6 @@ scanner.close()
    - 개발 코드와 객체 사이를 연결
    - 개발 코드변경 없이 객체를 바꿔 낄 수 있도록 하는 역할
    - interface가 abstract 보다 추상화 정도가 높다
+ Html/css/jscrpit
+  - onmouse'event' > style=(" ")
+
