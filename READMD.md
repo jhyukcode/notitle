@@ -45,4 +45,15 @@ scanner.close()
      [!] 단, 부모가 자식을 담은 적이 있어야 한다
    > 다형성은 부모 타입으로 자식 객체들을 관리하기 용이하다
  
-  
+2025-03-06
+ JAVA 추상화 abstract와 interface
+  (1) abstract
+   : 실체화된 객체들 간에 공통되는 특성을 추출한 것
+    [!] 미완성적인 개념 ( new 사용불가 )
+    <목적>
+     공통된 필드와 메서드의 이름을 통일하기 위함
+   [형식] abstract class 'super' > class 'sub' extends 'super'
+  (2) interface
+   - 개발 코드와 객체 사이를 연결
+   - 개발 코드변경 없이 객체를 바꿔 낄 수 있도록 하는 역할
+   - interface가 abstract 보다 추상화 정도가 높다
