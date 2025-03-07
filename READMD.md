@@ -60,3 +60,7 @@ scanner.close()
  Html/css/jscrpit
   - onmouse'event' > style=(" ")
 
+2025-03-07
+ JAVA NoNameClass와 Exception
+  익명클래스 : 
+  예외처리 : 발생할 오류를 예상하여 해당 오류를 예외처리로 하여금 오류가 발생하지 않게 사전 방지
