@@ -64,3 +64,16 @@ scanner.close()
  JAVA NoNameClass와 Exception
   익명클래스 : 
   예외처리 : 발생할 오류를 예상하여 해당 오류를 예외처리로 하여금 오류가 발생하지 않게 사전 방지
+
+2025-03-10 
+ JAVA Collection Framework
+  (1) 배열의 단점을 개선한 클래스, 객체(클래스)만 저장 가능
+  (2) 저장 단위
+   변수 < 배열 < 클래스 < 컬렉션 프레임워크 < 파일 < db
+  (3) 핵심 인터페이스
+   - List : 순서가 있음, 중복을 허용함
+    > add, get, size, remove, contains
+   - Set : 순서가 없음, 중복이 불가함
+    > add, 향상된 for/iterator, size, remove, contains
+   - Map : key, value가 쌍을 이룸
+    > put, get(key), 향상된 for/iterator, size, remove, contains
