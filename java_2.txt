@@ -147,7 +147,7 @@
     abstract : 인스턴스 변수, 일반 메서드, 추상 메서드 모두 가질 수 있음
     interface : 상수(public, static, final) + 추상메서드(public, abstract)만 가짐
   (3) 프로젝트 진행 중 interface 사용
-    : 다른 구성원들이 각각의 부분을 완성할 떄 까지 기다리지 않고 규약만 정해두고 본인 부분만 작성
+    : 다른 구성원들이 각각의 부분을 완성할 떄 까지 기다리지 않고 규약만 정해두고 본인 부분만 작성 
   (4) interface 형식
     interface 'interface'{
       '상수'; 
