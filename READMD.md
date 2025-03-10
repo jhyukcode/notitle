@@ -77,3 +77,6 @@ scanner.close()
     > add, 향상된 for/iterator, size, remove, contains
    - Map : key, value가 쌍을 이룸
     > put, get(key), 향상된 for/iterator, size, remove, contains
+ Html Bootstrap5 <Grids>
+  .col-sm-'number'(max 12) : 한 줄에 최대 12칸(혹은 12칸 길이)의 그리드를 생성한다.
+   - alert alert-warning(다른 alert)를 이용하여 그리드가 생성된 모양을 가시성 좋게 확인할 수 있다
