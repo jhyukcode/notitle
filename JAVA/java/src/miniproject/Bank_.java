@@ -20,6 +20,11 @@ class Bank_v7 {
 	public void setPass(String pass) { this.pass = pass; }
 	public double getBalance() { return balance; }
 	public void setBalance(double balance) { this.balance = balance; }
+	@Override
+	public String toString() {
+		return "Bank_v7 [id=" + id + ", pass=" + pass + ", balance=" + balance + "]";
+	}
+	
 	}
 class Menu7{ 
 	Bank_v7[] users = new Bank_v7[10];
@@ -27,6 +32,7 @@ class Menu7{
 		Scanner sc = new Scanner(System.in);
 		Input input = new Input();
 		Show show = new Show();
+		Deposit deposit = new Deposit();
 		System.out.println("first ID");
 		String id = sc.next();
 		System.out.println("pwd");
@@ -42,9 +48,9 @@ class Menu7{
 			int select = sc.nextInt();
 		
 		switch (select) {
-		case 1: show.exec(users); break;
-		case 2:
-		case 3:
+		case 1: 
+		case 2: show.exec(users); break;
+		case 3: deposit.exec(users); break;
 		case 4:
 		case 5: 
 		case 6: System.out.println("서비스를 종료합니다"); return;
@@ -70,7 +76,21 @@ class Show implements Bank_Controller{
 		}
 	}
 }
-//class Deposit implements Bank_Controller{ }
+class Deposit implements Bank_Controller{
+	Scanner sc = new Scanner(System.in);
+	@Override
+	public void exec(Bank_v7[] users) { 
+		System.out.println("입금");
+		int dep = sc.nextInt();
+		if(dep<0) { System.out.println("입금을 취소합니다"); return;}
+		else { 
+			System.out.println("정상적으로 입금되었습니다");
+				for (Bank_v7 user : users) {
+					System.out.println("아이디 : "+ user.getId()+"\n예금 : "+user.getBalance());}
+		}
+	}
+}
+	
 //class Withdraw implements Bank_Controller{ }
 //class Delete implements Bank_Controller{ }
 
