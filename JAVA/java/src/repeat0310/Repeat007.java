@@ -1,4 +1,4 @@
-package repeat_0310;
+package repeat0310;
 
 class Papa extends Object{
 	int money = 10000;

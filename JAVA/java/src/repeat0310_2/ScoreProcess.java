@@ -1,4 +1,4 @@
-package repeat_0310_2;
+package repeat0310_2;
 
 public class ScoreProcess {
 	public void process_avg(Score[] std) {

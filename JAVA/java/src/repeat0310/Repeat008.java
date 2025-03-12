@@ -1,4 +1,4 @@
-package repeat_0310;
+package repeat0310;
 //	Q1. abstract와 interface의 공통점과 차이점
 //	상속 혹은 구현받은 클래스에서의 구현을 강제한다
 //	abstract는 {} 구현부가 존재하지만 interface는 {}구현부가 존재하지 않음

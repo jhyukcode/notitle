@@ -1,4 +1,4 @@
-package repeat_0310_2;
+package repeat0310_2;
 
 public class ScorePrint {
 	public void show(Score std) { }

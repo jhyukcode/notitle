@@ -1,4 +1,4 @@
-package repeat_0310_2;
+package repeat0310_2;
 
 public class Score {
 	private String name;

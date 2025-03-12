@@ -177,3 +177,33 @@
       > add, 향상된 for/iterator, size, remove, contains
     3 Map  : key, value 쌍을 이룸   -사전
       > put, get(key), 향상된 for/iterator, size, remove, contains
+
+14. Lambda + Stream
+  (1) Lambda
+    - 자바에서 함수적 프로그래밍 지원 기법
+    - 코드 간결하게
+  (2) 함수형 인터페이스
+    - 1개의 추상 메서드를 갖는 인터페이스
+  (3) 자바 api의 함수형 인터페이스
+    [1] Consumer : 받는용 > accept
+    [2] Supplier : 제공용 > get
+    [3] Predicate : 판단용 > test
+    [4] Function : 처리용 > apply
+    [5] Operator : 연산용 > apply
+
+15. JAVA IO
+  (1) Input/Output
+    - 입력과 출력
+    - 두 대상 간의 데이터를 주고 받는 것
+    - 스트림 : 사용 연결 통로
+    [!] 입력스트림 → [프로그램] → 출력스트림
+  (2) JAVA I/O 분류
+    - byte 단위 / char 단위
+      > byte 단위 ( InputStream / OutputStream ) : 모든 종류
+      > char 단위 ( Reader / Writer ) : 문자
+  (3) 보조스트림
+    - 사용 연결 통로
+    - new BufferedReader( new InputStreamReader(new FileInputStream(file)))
+    (1) new FileInputStream(file) : byte#/char
+    (2) new InputStreamReader : 바이트를 문자 스트림으로, 텍스트 처리 가능하게
+    (3) new BufferedReader : 속도 향상

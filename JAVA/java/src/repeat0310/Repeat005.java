@@ -1,7 +1,5 @@
-package repeat_0310;
-import repeat_0310_2.Score;
-import repeat_0310_2.ScorePrint;
-import repeat_0310_2.ScoreProcess;
+package repeat0310;
+import repeat0310_2.*;
 
 public class Repeat005 {
 	public static void main(String[] args) {

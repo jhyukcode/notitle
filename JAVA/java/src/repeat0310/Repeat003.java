@@ -1,4 +1,4 @@
-package repeat_0310;
+package repeat0310;
 
 class Sawon005{
 	int pay=10000;

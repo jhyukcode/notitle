@@ -1,4 +1,4 @@
-package repeat_0310;
+package repeat0310;
 
 class A{
 	int a;					// int < 인스턴스 변수 : heap - new 

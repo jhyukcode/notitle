@@ -1,4 +1,4 @@
-package repeat_0310;
+package repeat0310;
 	
 //	Q1. 클래스를 상속하는 이유
 //	A1. 코드의 재사용성을 높이기 위함

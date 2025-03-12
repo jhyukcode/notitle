@@ -1,4 +1,4 @@
-package repeat_0310;
+package repeat0310;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
