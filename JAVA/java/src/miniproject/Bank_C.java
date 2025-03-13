@@ -1,7 +1,7 @@
 package miniproject;
 import java.util.Scanner;
 
-class Bank_w{
+class Bank_C2{
 	// 인스턴스 변수
 	private String id;
 	private String pass;
@@ -9,7 +9,7 @@ class Bank_w{
 	// 클래스 변수
 	static String Company="(주)회사";
 	// 생성자
-	public Bank_w(String id, String pass, double balance) {
+	public Bank_C2(String id, String pass, double balance) {
 		super(); this.id = id; this.pass = pass; this.balance = balance; }
 	// getter/setter
 	public String getId() { return id; }
@@ -20,60 +20,72 @@ class Bank_w{
 	public void setBalance(double balance) { this.balance = balance; }
 	@Override
 	public String toString() {
-		return "Bank_w [id=" + id + ", pass=" + pass + ", balance=" + balance + "]";
+		return "Bank_C [id=" + id + ", pass=" + pass + ", balance=" + balance + "]";
 	}
 }
-interface Bank_Controller_A{ void exec(Bank_w[] users); }
+interface Bank_Controller_C{ void exec(Bank_C2[] users); }
 
-class Login_A {
-	public static String login(Bank_w[] users) {	// 로그인 실패 시 null 값 반환
+class Login_C {
+	public static String login(Bank_C2[] users) {	// 로그인 실패 시 null 값 반환
 		Scanner sc = new Scanner(System.in);
-		System.out.print("\nID입력 : ");
-		String tempId = sc.nextLine();
-		for(Bank_w a:users) {
-			if(a==null) { continue; }
-			if(a.getId().equals(tempId)) {
-				System.out.println("\n입력된 ID : "+a.getId());
-				System.out.print("비밀번호 입력 : "); 
-				String tempPwd = sc.next();
-				if(a.getPass().equals(tempPwd)) {
-					return a.getId();
-					} else { System.out.println("\n비밀번호가 틀렸습니다\n\n"); return null;} } }
-		System.out.println("등록되지 않은 ID 입니다\n");
+		System.out.print("\nID입력 : "); String tempId = sc.next();
+		System.out.println("\n입력된 ID : "+tempId);
+		System.out.print("비밀번호 입력 : "); String tempPwd=sc.next();
+		for(Bank_C2 b:users) {
+			if(b==null) { continue; }
+			if(b.getId().equals(tempId) && b.getPass().equals(tempPwd)) { return b.getId();}
+		}
+		System.out.println("ID 혹은 비밀번호가 일치하지 않습니다\n");
 		return null;
 	}
 }
-
-class Menu_A{
-	Bank_w[] users;
-	Bank_Controller_A controller;
-	Bank_Controller_A[] process;
-	public Menu_A() {
-		super(); users = new Bank_w[3];
-		process = new Bank_Controller_A[] { new Input_A() , new Show_A() , new Deposit_A() , new Withdraw_A() ,new Delete_A() }; }
+class UserSearch{
+	public static String UserId (Bank_C2[] users ,String Id) {
+		for(Bank_C2 b:users) {
+			if ( b==null || (!(b.getId().equals(Id))) ) { continue; }
+			return b.getId(); }
+		return null;
+	}
+	public static Double UserBalance (Bank_C2[] users, String Id) {
+		for(Bank_C2 b:users) {
+			if ( b==null || (!(b.getId().equals(Id))) ) { continue; }
+			return b.getBalance(); }
+		return 0.0;
+	}
+}
+class Menu_C{
+	Bank_C2[] users;
+	Bank_Controller_C controller;
+	Bank_Controller_C[] process;
+	public Menu_C() {
+		super(); users = new Bank_C2[3];
+		process = new Bank_Controller_C[] { new Input_C() , new Show_C() , new Deposit_C() , new Withdraw_C() ,new Delete_C() }; }
 	
 	public void exec() {
 		Scanner sc = new Scanner(System.in);
+		int num = -100;
 		while(true) {
-			System.out.print(Bank_w.Company+" BANK SYSTEM\n1. 생성\t2. 조회\n3. 입금\t4. 출금\n5. 삭제\t6. 종료\n> ");
-			int num = sc.nextInt();
+			try {
+			System.out.print(Bank_C2.Company+" BANK SYSTEM\n1. 생성\t2. 조회\n3. 입금\t4. 출금\n5. 삭제\t6. 종료\n> ");
+			num = sc.nextInt();}
+			catch (Exception e) { sc.next();}
 			if(num==6) { System.out.println("\n서비스를 종료합니다\n이용해주셔서 감사합니다"); return; }
-			if(num>6||num<1) { System.out.println("\n\n"); continue;}
+			if(num>6||num<1) { System.out.println("\n"); continue;}
 			controller = process[num-1]; controller.exec(users);
 		}
 	}
 }
-class Input_A implements Bank_Controller_A{
+class Input_C implements Bank_Controller_C{
 	Scanner sc = new Scanner(System.in);
 //	새 계정 생성
 	@Override
-	public void exec(Bank_w[] users) {
+	public void exec(Bank_C2[] users) {
 		System.out.println("사용할 아이디 입력");
 		String newId = sc.nextLine();
 		System.out.println("사용할 비밀번호 입력");
 		String newPwd = sc.nextLine();
 		double balanceReset = 0.0;			
-        Bank_w user = new Bank_w(newId, newPwd, balanceReset);
+        Bank_C2 user = new Bank_C2(newId, newPwd, balanceReset);
         for (int i = 0; i < users.length; i++) {
         	if (users[i] == null) {
         		users[i] = user;
@@ -83,22 +95,21 @@ class Input_A implements Bank_Controller_A{
         }
 	}
 }
-class Show_A implements Bank_Controller_A{
+class Show_C implements Bank_Controller_C{
 	@Override
-	public void exec(Bank_w[] users) {
-		String tempId = Login_A.login(users);
+	public void exec(Bank_C2[] users) {
+		String tempId = Login_C.login(users);
 		if (tempId==null) {return;}
 		
-		for(Bank_w b:users) {
-			if ((b==null)||(!(b.getId().equals(tempId)))) {continue;}	// null 값이거나 로그인 정보로 받아온 tempId 값과 불일치 시 continue
-			System.out.println("\n"+b.getId()+"님\n"+"계좌 예금 : "+b.getBalance()+"\n\n"); 
+		String id=UserSearch.UserId(users, tempId);
+		double balance=UserSearch.UserBalance(users, tempId);
+		System.out.println("\nID : "+id+"님\n계좌 예금 : "+balance+"\n\n");
 		}
 	}
-}
-class Deposit_A implements Bank_Controller_A{
+class Deposit_C implements Bank_Controller_C{
 	@Override
-	public void exec(Bank_w[] users) {
-		String tempId = Login_A.login(users);
+	public void exec(Bank_C2[] users) {
+		String tempId = Login_C.login(users);
 		if (tempId==null) {return;}
 		
 		System.out.print("입금할 금액 입력 : ");
@@ -106,26 +117,34 @@ class Deposit_A implements Bank_Controller_A{
 		int deposit = sc.nextInt();
 		
 		if(deposit<=0) { System.out.println("입금을 취소하고 메인 화면으로 돌아갑니다\n"); }
-		else { System.out.println("\n금액 "+deposit+" 정상 입금되었습니다\n"); 
-		for(Bank_w b:users) {
-			if ((b==null)||(!(b.getId().equals(tempId)))) {continue;}	// null 값이거나 로그인 정보로 받아온 tempId 값과 불일치 시 continue
-			b.setBalance(deposit+b.getBalance());
-			System.out.println("\nID : "+b.getId()+"\n계좌 예금 : "+b.getBalance()+"\n\n");
-			}
+		else { System.out.println("\n금액 "+deposit+" 정상 입금되었습니다\n");
+		
+		String id=UserSearch.UserId(users, tempId);
+		Double balance=UserSearch.UserBalance(users, tempId);
+		System.out.println(id+balance);
+		for(int i=0;i<users.length;i++) {
+			if(!( users[i].getId().equals(id) )) {continue;}
+			users[i].setBalance(balance+users[i].getBalance()); break; }
+		
+//		for(Bank_C2 b:users) {
+//			if ((b==null)||(!(b.getId().equals(tempId)))) {continue;}	// null 값이거나 로그인 정보로 받아온 tempId 값과 불일치 시 continue
+//			b.setBalance(deposit+b.getBalance());
+//			System.out.println("\nID : "+b.getId()+"\n계좌 예금 : "+b.getBalance()+"\n\n");
+//			}
 		}
 	}
 }
-class Withdraw_A implements Bank_Controller_A{
+class Withdraw_C implements Bank_Controller_C{
 	@Override
-	public void exec(Bank_w[] users) {
-		String tempId = Login_A.login(users);
+	public void exec(Bank_C2[] users) {
+		String tempId = Login_C.login(users);
 		if(tempId==null) {return;}
 		
 		System.out.print("출금할 금액 입력 : ");
 		Scanner sc = new Scanner(System.in);
 		int withdraw = sc.nextInt();
 		if(withdraw<0) {System.out.println("출금을 취소하고 메인 화면으로 돌아갑니다\n\n"); return; }
-		for(Bank_w b:users) {
+		for(Bank_C2 b:users) {
 			if ((b==null)||(!(b.getId().equals(tempId)))) {continue;}	// null 값이거나 로그인 정보로 받아온 tempId 값과 불일치 시 continue}
 			if(b.getBalance()>=withdraw) { 
 				b.setBalance(b.getBalance()-withdraw);
@@ -135,13 +154,13 @@ class Withdraw_A implements Bank_Controller_A{
 		}
 	}
 }
-class Delete_A implements Bank_Controller_A{
+class Delete_C implements Bank_Controller_C{
 	@Override
-	public void exec(Bank_w[] users) {
-		String tempId = Login_A.login(users);
+	public void exec(Bank_C2[] users) {
+		String tempId = Login_C.login(users);
 		if(tempId==null) {return;}
 		
-		for(Bank_w b:users) {
+		for(Bank_C2 b:users) {
 			if ((b==null)||(!(b.getId().equals(tempId)))) {continue;}	// null 값이거나 로그인 정보로 받아온 tempId 값과 불일치 시 continue
 			if (b.getBalance()>0) { System.out.println(b.getId()+" 님의 계좌에 예금이 존재하여 계좌 삭제 절차를 진행하실 수 없습니다\n\n"); break; }
 			System.out.println("[ID : "+b.getId()+"]"+" 계좌 삭제를 진행하시겠습니까? (Y/N)");
@@ -152,9 +171,9 @@ class Delete_A implements Bank_Controller_A{
 		}
 	}
 }
-public class Bank_B {
+public class Bank_C {
 	public static void main(String[] args) {
-		Menu_A menu = new Menu_A();
+		Menu_C menu = new Menu_C();
 		menu.exec();
 	}
 }
