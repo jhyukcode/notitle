@@ -80,3 +80,21 @@ scanner.close()
  Html Bootstrap5 <Grids>
   .col-sm-'number'(max 12) : 한 줄에 최대 12칸(혹은 12칸 길이)의 그리드를 생성한다.
    - alert alert-warning(다른 alert)를 이용하여 그리드가 생성된 모양을 가시성 좋게 확인할 수 있다
+
+2025-03-13
+ JAVA IO
+  (1) Input/Output
+    - 입력과 출력
+    - 두 대상 간의 데이터를 주고 받는 것
+    - 스트림 : 사용 연결 통로
+    [!] 입력스트림 → [프로그램] → 출력스트림
+  (2) JAVA I/O 분류
+    - byte 단위 / char 단위
+      > byte 단위 ( InputStream / OutputStream ) : 모든 종류
+      > char 단위 ( Reader / Writer ) : 문자
+  (3) 보조스트림
+    - 사용 연결 통로
+    - new BufferedReader( new InputStreamReader(new FileInputStream(file)))
+    [1] new FileInputStream(file) : byte#/char
+    [2] new InputStreamReader : 바이트를 문자 스트림으로, 텍스트 처리 가능하게
+    [3] new BufferedReader : 속도 향상
