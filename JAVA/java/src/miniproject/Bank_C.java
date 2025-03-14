@@ -1,4 +1,5 @@
 package miniproject;
+import java.util.Arrays;
 import java.util.Scanner;
 
 class Bank_C2{
@@ -29,8 +30,8 @@ class Login_C {
 	public static String login(Bank_C2[] users) {	// 로그인 실패 시 null 값 반환
 		Scanner sc = new Scanner(System.in);
 		System.out.print("\nID입력 : "); String tempId = sc.next();
-		System.out.println("\n입력된 ID : "+tempId);
-		System.out.print("비밀번호 입력 : "); String tempPwd=sc.next();
+		System.out.print("\n입력된 ID : "+tempId);
+		System.out.print("\n비밀번호 입력 : "); String tempPwd=sc.next();
 		for(Bank_C2 b:users) {
 			if(b==null) { continue; }
 			if(b.getId().equals(tempId) && b.getPass().equals(tempPwd)) { return b.getId();}
@@ -40,17 +41,13 @@ class Login_C {
 	}
 }
 class UserSearch{
-	public static String UserId (Bank_C2[] users ,String Id) {
+	public static Integer UserId (Bank_C2[] users ,String Id) {
+		int i=-1;
 		for(Bank_C2 b:users) {
+			i++;
 			if ( b==null || (!(b.getId().equals(Id))) ) { continue; }
-			return b.getId(); }
-		return null;
-	}
-	public static Double UserBalance (Bank_C2[] users, String Id) {
-		for(Bank_C2 b:users) {
-			if ( b==null || (!(b.getId().equals(Id))) ) { continue; }
-			return b.getBalance(); }
-		return 0.0;
+			return i; }
+		return 0;
 	}
 }
 class Menu_C{
@@ -66,10 +63,11 @@ class Menu_C{
 		int num = -100;
 		while(true) {
 			try {
+			System.out.println(Arrays.toString(users));
 			System.out.print(Bank_C2.Company+" BANK SYSTEM\n1. 생성\t2. 조회\n3. 입금\t4. 출금\n5. 삭제\t6. 종료\n> ");
 			num = sc.nextInt();}
 			catch (Exception e) { sc.next();}
-			if(num==6) { System.out.println("\n서비스를 종료합니다\n이용해주셔서 감사합니다"); return; }
+			if(num==6) { System.out.println("\n서비스를 종료합니다"); return; }
 			if(num>6||num<1) { System.out.println("\n"); continue;}
 			controller = process[num-1]; controller.exec(users);
 		}
@@ -101,11 +99,10 @@ class Show_C implements Bank_Controller_C{
 		String tempId = Login_C.login(users);
 		if (tempId==null) {return;}
 		
-		String id=UserSearch.UserId(users, tempId);
-		double balance=UserSearch.UserBalance(users, tempId);
-		System.out.println("\nID : "+id+"님\n계좌 예금 : "+balance+"\n\n");
-		}
+		int u = UserSearch.UserId(users, tempId);
+		System.out.println("\nID : "+users[u].getId()+"님\n계좌 예금 : "+users[u].getBalance()+"\n\n");
 	}
+}
 class Deposit_C implements Bank_Controller_C{
 	@Override
 	public void exec(Bank_C2[] users) {
@@ -119,12 +116,9 @@ class Deposit_C implements Bank_Controller_C{
 		if(deposit<=0) { System.out.println("입금을 취소하고 메인 화면으로 돌아갑니다\n"); }
 		else { System.out.println("\n금액 "+deposit+" 정상 입금되었습니다\n");
 		
-		String id=UserSearch.UserId(users, tempId);
-		Double balance=UserSearch.UserBalance(users, tempId);
-		System.out.println(id+balance);
-		for(int i=0;i<users.length;i++) {
-			if(!( users[i].getId().equals(id) )) {continue;}
-			users[i].setBalance(balance+users[i].getBalance()); break; }
+		int u=UserSearch.UserId(users, tempId);
+		users[u].setBalance(users[u].getBalance()+deposit);
+		System.out.println("\nID : "+users[u].getId()+"님\n계좌 예금 : "+users[u].getBalance()+"\n\n");
 		
 //		for(Bank_C2 b:users) {
 //			if ((b==null)||(!(b.getId().equals(tempId)))) {continue;}	// null 값이거나 로그인 정보로 받아온 tempId 값과 불일치 시 continue
@@ -144,14 +138,12 @@ class Withdraw_C implements Bank_Controller_C{
 		Scanner sc = new Scanner(System.in);
 		int withdraw = sc.nextInt();
 		if(withdraw<0) {System.out.println("출금을 취소하고 메인 화면으로 돌아갑니다\n\n"); return; }
-		for(Bank_C2 b:users) {
-			if ((b==null)||(!(b.getId().equals(tempId)))) {continue;}	// null 값이거나 로그인 정보로 받아온 tempId 값과 불일치 시 continue}
-			if(b.getBalance()>=withdraw) { 
-				b.setBalance(b.getBalance()-withdraw);
-				System.out.println("\n금액 "+withdraw+" 정상 출금되었습니다");
-				System.out.println("\nID : "+b.getId()+"\n계좌 예금 : "+b.getBalance()+"\n\n");
-			} else { System.out.println("출금하려고 하는 금액이 계좌 예금보다 많습니다\n\n");}
-		}
+		
+		int u = UserSearch.UserId(users, tempId);
+		if(withdraw>users[u].getBalance()) { System.out.println("출금 금액은 계좌 내 금액을 초과하실 수 없습니다"); return; }
+		System.out.println("금액 "+withdraw+" 이 정상 출금되었습니다");
+		users[u].setBalance(users[u].getBalance()-withdraw);
+		System.out.println("ID : "+tempId+"\n계좌 예금 : "+users[u].getBalance()+"\n\n");
 	}
 }
 class Delete_C implements Bank_Controller_C{
@@ -160,15 +152,15 @@ class Delete_C implements Bank_Controller_C{
 		String tempId = Login_C.login(users);
 		if(tempId==null) {return;}
 		
-		for(Bank_C2 b:users) {
-			if ((b==null)||(!(b.getId().equals(tempId)))) {continue;}	// null 값이거나 로그인 정보로 받아온 tempId 값과 불일치 시 continue
-			if (b.getBalance()>0) { System.out.println(b.getId()+" 님의 계좌에 예금이 존재하여 계좌 삭제 절차를 진행하실 수 없습니다\n\n"); break; }
-			System.out.println("[ID : "+b.getId()+"]"+" 계좌 삭제를 진행하시겠습니까? (Y/N)");
-			Scanner sc = new Scanner(System.in);
-			char confirm = sc.next().charAt(0);
-			if(confirm=='Y'||confirm=='y') { System.out.println("계좌가 삭제되었습니다\n이용해주셔서 감사합니다\n\n"); }
-			else { System.out.println("계좌 삭제 절차를 취소하셨습니다\n\n"); }
-		}
+		int u = UserSearch.UserId(users, tempId);
+		if (users[u].getBalance()>0) { System.out.println("해당 계좌에 예금이 존재하여 삭제하실 수 없습니다"); return; }
+		System.out.println("[ID : "+users[u].getId()+"]"+" 계좌 삭제를 진행하시겠습니까? (Y/N)");
+		
+		Scanner sc = new Scanner(System.in);
+		char confirm = sc.next().charAt(0);
+		if(confirm=='Y'||confirm=='y') { 
+			System.out.println("계좌가 삭제되었습니다\n\n"); users[u] = null; }
+		else { System.out.println("계좌 삭제 절차를 취소하셨습니다\n\n"); }
 	}
 }
 public class Bank_C {
