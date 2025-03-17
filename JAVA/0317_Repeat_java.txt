@@ -1,0 +1,37 @@
+Q1.   클래스에서 사용가능한 변수들의 범위와 역할
+1-1. 자바메모리구조 - [ method, heap, stack ]
+1-2. RUNTIME DATA AREA를 적으시오.
+1) (  method   )     area : 정보저장( 클래스정보, static, final )
+2) (  heap   )    area : 실체화(객체-인스턴스)저장 , Garbage Collector가 처리 
+3) (  stack   )     area : 임시값 저장 , 메서드의 작업공간 , 지역변수 잠깐사용되는 데이터
+
+Q2. class  vs   instance  를 설명하시오.
+  클래스 : 설계도
+  인스턴스 : 메모리에 실체화를 한 것
+
+
+Q3. 다음의 의미를 적으시오.
+		   A1  a = new A1(); 
+  메모리를 빌려오고 객체를 생성 : A1()
+  변수 초기화 : new
+  new A1의 주소 : a
+
+Q4. 다음예제에서 class 와 instance를 메모리 구조와 연결지어서 설명하시오.
+class A1{}
+public class Class001 {
+	public static void main(String[] args) {//jvm - main 구동시점
+		// int i;   자료형 변수명;
+		   A1  a = new A1(); 
+		   System.out.println(a);
+		   A1  a2 = new A1();
+		   A1  a3 = new A1();
+	}
+}
+────────────────────────────────────────────────────────────
+[method 정보들] A1.class Class001.class #설계도(클래스)
+────────────────────────────────────────────────────────────
+[heap]													| [stack]
+3번지 A1{}												a3(3번지)			
+2번지 A1{}												a2(2번지)			
+1번지 A1{}												a(1번지)
+────────────────────────────────────────────────────────────

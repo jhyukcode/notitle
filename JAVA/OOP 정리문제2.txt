@@ -1,0 +1,284 @@
+Q1. JVM 영역
+
+	---------------------------------------------------------------------
+	[JAVA파일 ]    A.java    (1)
+	      |  [JAVA 컴파일러(javac.exe) ] javac A.java      (2)
+	[CLASS파일]   A.class  (3)
+	---------------------------------------------------------------------
+	(4) [Class Loader]    (5)[Execution Engine]  (6) [Garbage Collector]
+		↕	↕		         ↕
+	    ==========================================================================
+	(7) [Runtime Data Area]
+	    [Method (8) | Heap(9)      | Stack (10) | PC register(11)| Native Method Stack(12)] 
+	    ==========================================================================
+	---------------------------------------------------------------------	   
+	Q1) JVM의 영역을 구분하시오.  [ Class Loader , Execution Engine , Garbage Collector , Runtime Data Area]
+	Q2) [Class Loader]  JVM이 운영체제로부터 할당받은 메모리영역인 Runtime Data Area로 적재하는 역할 
+	Q3) [Execution Engine]  Class Loader에 의해 메모리에 적재된 클래스(바이트 코드)들을 기계어로 변경해 명령어 단위로 실행하는 역할
+	Q4) [Garbage Collector]   Heap 메모리 영역에 생성(적재)된 객체들 중에 참조되지 않는 객체들을 탐색 후 제거하는 역할 
+  Q5) [Runtime Data Area]   JVM의 메모리 영역으로 자바 애플리케이션을 실행할 때 사용되는 데이터들을 적재하는 영역 
+
+	Q6) Runtime Data Area을 구분하시오.
+		[ method, heap, stack  ]
+	Q7) Runtime Data Area 영역중 클래스데이터가 저장되는 영역  [ method area ]  ###
+	Q8) Runtime Data Area 영역중 인스턴스데이터가 저장되는 영역  [ heap area ]  ### 
+	Q9) Runtime Data Area 영역중 지역변수데이터가 저장되는 영역  [ stack ]  ### 
+	
+	
+
+Q2.  인스턴스변수, 클래스변수를 구분하시오.
+class Test{
+	static int cv = 1;  
+	int iv = 1;          
+	static {cv=2;}
+	{iv=2;}
+	Test(){  iv=3; }
+}
+public class EX015 {
+	public static void main(String []args) {
+		System.out.println(" 다음 중 인스턴스변수의 초기화 순서를 적으시오.  ");   ####
+		Test t1 = new Test();  System.out.println(t1.iv);
+	   
+	} // end main
+} // end class
+
+ 
+runtime area [ method  | heap | stack | pc register | navtive method stack ]
+ㅁ 클래스변수 :   static int cv
+	기본값 	| 명시적 초기화  = | 클래스 초기화블럭  { }
+	[  1           2                    2(X)                ]
+ㅁ 인스턴스 변수 : int iv 
+	기본값	| 명시적 초기화  =  | 인스턴스 초기화 블록 | 생성자
+	[  1          2                     2(X) 			        3 ]
+ 
+
+ 
+
+
+
+Q3.  class(1) 필요한 자료의 묶음.
+ 		 1. 메인은 다음과 같다.
+ 		 	Milk m1 = new Milk("choco" , 1200);
+ 		 	System.out.println( m1 );  // 출력된 결과 : choco / 1200
+ 		 	Milk m2 = new Milk();
+ 		 	System.out.println( m2 );  // 출력된 결과 : white / 1300
+ 		 	
+		 2.	Milk 클래스를 구현하시오 
+			  	클래스의 기능 : 데이터를 받아서 전달하는 기능  (DTO)
+				1) 멤버변수    private  name이름 ,  private  price가격      
+				2) 생성자       기본생성자 : 
+						           필드생성자 : 이름,  , 가격을 입력받아 처리해주는 생성자	
+				3) 멤버함수  ---
+
+        class Milk{
+	        private String name;
+	        private int price;
+	        public Milk() { super(); }
+	        public Milk(String name, int price) {
+		        super(); 
+            this.name = name; 
+            this.price = price; 
+            }
+        }
+
+Q4.  class(2) 클래스 배열
+ 		 1. 메인은 다음과 같다.
+			Milk []milks = new Milk[3];   
+			milks[0] = new Milk("white",1000);
+			milks[1] = new Milk("choco",1200);
+			milks[2] = new Milk("banana",1500);
+			
+			MilkPrint  print = new MilkPrint();   
+			print.show(  milks     );	
+			// 출력된 결과 : 
+			 * white  / 1000
+			 * choco  / 1200
+			 * banana / 1500 
+			 
+		 2.	MilkPrint 클래스를 구현하시오 
+      
+      class Milk{
+	      private String name;
+	      private int price;
+  	    public Milk() { super(); }
+  	    public Milk(String name, int price) {
+    		super(); this.name = name; this.price = price; }
+      	public String getName() { return name; }
+      	public void setName(String name) { this.name = name; }
+      	public int getPrice() { return price; }
+      	public void setPrice(int price) { this.price = price; }
+      }
+      class MilkPrint{
+	      void show(Milk[] a) {
+		      for(Milk z:a) {
+			      System.out.println(z.getName()+"/"+z.getPrice());
+		      }
+	      }
+      }
+
+Q5.   다형성
+		class TestA2{
+			int  a = 10;
+			public TestA2() { super();  }
+			@Override public String toString() { return "TestA2 [a=" + a + "]"; }
+		}
+		class TestB2 extends  TestA2{ 
+			int b=20;
+			public TestB2() { super();  }
+			@Override public String toString() { return "TestB2 [b=" + b + "]"; }
+		}
+		public class ExtendsBasic009_2_Polymorphism2_short {
+			public static void main(String[] args) {        
+				TestA2   ta = new TestA2();    // [ ta   [a]  ]
+				TestB2   tb = ta;                   // [ tb   [b]-[a]  ]
+				// 오류나는 이유는? 
+          > 부모가 자식을 담은 적이 있어야 자식이 부모를 담을 수 있다 
+			}
+		 }
+
+
+Q6. 콜렉션프레임워크의 종류 (필기)
+		List : 순서 [O] , 중복허용 [O]  
+		  => 사용가능메서드: [추가][삭제][갯수][데이터꺼내기]
+        > add, get, size, remove, contains
+		Set : 순서 [X] , 중복허용 [X]  
+			=>  사용가능메서드: [추가][삭제][갯수][데이터꺼내기]
+        > add, 향상된for/Iterator, size, remove, contains
+	  Map : 순서가아닌 [key,value]의 쌍(ENTRY)으로 이루어짐
+		  =>  사용가능메서드: [추가][삭제][갯수][데이터꺼내기] 
+        > put, get(key), 향상된for/Iterator, size, remove, contains
+
+
+
+
+Q7.  ArrayList
+ 		 * 	 dto 를 이용하여 ArrayList + Iterator  이용해서 만들기  
+        class profile{
+	private String name;
+	private int age;
+	public profile() { super(); }
+	public profile(String name, int age) {
+		super(); this.name = name; this.age = age; }
+	public String getName() { return name; }
+	public void setName(String name) { this.name = name; }
+	public int getAge() { return age; }
+	public void setAge(int age) { this.age = age; }
+}
+public class Repeat001 {
+	public static void main(String[] args) {        
+		ArrayList list = new ArrayList<>();
+		int total=0; double avg=0.0;
+		list.add(new profile("iron", 45));
+		list.add(new profile("hulk", 38));
+		list.add(new profile("captain", 120));
+		Iterator<profile> iter = list.iterator();
+		System.out.println("─────────────");
+		System.out.println("NO NAME\tAGE");
+		System.out.println("─────────────");
+		while(iter.hasNext()) {
+			profile a = iter.next();
+			total += a.getAge();
+			avg = total/3f;
+			System.out.println(a.getName()+"\t"+a.getAge());
+		}
+		System.out.println("나이총합 : "+total+"\n나이평균 : "+String.format("%.2f",avg));
+	}
+Q8.   HashSet
+		 *   dto 를 이용하여 HashSet   + Iterator  이용해서 만들기  
+
+    class profile2{
+	private String name;
+	private int age, num;
+	public profile2() { super(); }
+	public profile2(String name, int age, int num) {
+		super(); this.name = name; this.age = age; this.num = num; }
+	public String getName() { return name; }
+	public void setName(String name) { this.name = name; }
+	public int getAge() { return age; }
+	public void setAge(int age) { this.age = age; }
+	public int getNum() { return num; }
+	public void setNum(int num) { this.num = num; }
+}
+public class Repeat002 {
+	public static void main(String[] args) {        
+		Set<profile2> list = new HashSet();
+		int total=0; double avg=0.0;
+		list.add(new profile2("iron", 45, 1));
+		list.add(new profile2("hulk", 38, 2));
+		list.add(new profile2("captian", 120, 3));
+		System.out.println("───────────────────────────────────────");
+		System.out.println("NO\tNAME\t\tAGE");
+		System.out.println("───────────────────────────────────────");
+		Iterator<profile2> iter = list.iterator();
+		while(iter.hasNext()) {
+			profile2 a = iter.next();
+			total += a.getAge();
+			avg = total/3f;
+			System.out.println(a.getNum()+"\t"+a.getName()+"\t\t"+a.getAge());
+		}
+		System.out.println("나이총합 : "+total+"\n나이평균 : "+String.format("%.2f",avg));
+	}
+ }
+
+Q9.   HashMap
+		 *   dto 를 이용하여 HashMap   + Iterator  이용해서 만들기  
+  
+        class profile3{
+	private String name;
+	private int age, num;
+	public profile3() { super(); }
+	public profile3(String name, int age) {
+		super(); this.name = name; this.age = age; }
+	public String getName() { return name; }
+	public void setName(String name) { this.name = name; }
+	public int getAge() { return age; }
+	public void setAge(int age) { this.age = age; }
+}
+public class Repeat003 {
+	public static void main(String[] args) {        
+		Map<String, Integer> list = new HashMap<>();
+		int total=0; double avg=0.0; int i=1;
+		list.put("iron", 45);
+		list.put("hulk", 38);
+		list.put("captian", 120);
+		System.out.println("───────────────────────────────────────");
+		System.out.println("NO\tNAME\t\tAGE");
+		System.out.println("───────────────────────────────────────");
+		Iterator<String> iter = list.keySet().iterator();
+		while(iter.hasNext()) {
+			String a = iter.next();
+			total += list.get(a);
+			avg = total/3f;
+			System.out.println(i+"\t"+a+"\t\t"+list.get(a)); i++;
+		}
+		System.out.println("나이총합 : "+total+"\n나이평균 : "+String.format("%.2f",avg));
+	}
+}
+
+		 ㅁ 출력된결과
+		 ======================
+		 NO	NAME	AGE
+		 ======================
+		 1	iron		45
+		 2	hulk		38
+		 3	captain	120
+		 
+		 나이총합 : 203
+		 나이평균 : 67.67
+
+Q10.  다음과 같이 폴더와 파일을 만들어주세요!
+	1. folder 만들기   - 금일 패키지  com.company.java018
+	2. 파일만들기      - 위의폴더에   JavaIO002.txt
+
+    		String folder_rel = "src/com/company/java018/";
+		String file_rel="JavaIO002.txt";
+		
+		File folder = new File(folder_rel);
+		File file = new File(folder_rel+file_rel);
+		try {
+		if(!folder.exists()) { folder.mkdir();}
+		if(!file.exists()) {file.createNewFile();}
+		System.out.println("폴더/파일 생성");
+		} catch (IOException e) {e.printStackTrace();}
+	}
+}

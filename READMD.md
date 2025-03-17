@@ -80,3 +80,58 @@ scanner.close()
  Html Bootstrap5 <Grids>
   .col-sm-'number'(max 12) : 한 줄에 최대 12칸(혹은 12칸 길이)의 그리드를 생성한다.
    - alert alert-warning(다른 alert)를 이용하여 그리드가 생성된 모양을 가시성 좋게 확인할 수 있다
+
+2025-03-13
+ JAVA IO
+  (1) Input/Output
+    - 입력과 출력
+    - 두 대상 간의 데이터를 주고 받는 것
+    - 스트림 : 사용 연결 통로
+    [!] 입력스트림 → [프로그램] → 출력스트림
+  (2) JAVA I/O 분류
+    - byte 단위 / char 단위
+      > byte 단위 ( InputStream / OutputStream ) : 모든 종류
+      > char 단위 ( Reader / Writer ) : 문자
+  (3) 보조스트림
+    - 사용 연결 통로
+    - new BufferedReader( new InputStreamReader(new FileInputStream(file)))
+    [1] new FileInputStream(file) : byte#/char
+    [2] new InputStreamReader : 바이트를 문자 스트림으로, 텍스트 처리 가능하게
+    [3] new BufferedReader : 속도 향상
+
+2025-03-14 
+ JAVA Thread, Network
+  1. Thread
+   (1) 프로세스
+     - 실행 중인 하나의 프로그램
+   (2) 멀티 프로세스
+     - 동시에 여러 프로세스를 실행
+   (3) 구성
+     - 자원(리소스)+Thread(자원으로 실제 작업을 수행)
+     - 모든 프로세스느 최소한 하나의 스레드(main)
+     - 같은 프로세스 내의 모든 스레드는 자원 공유
+   (4) 동시성과 병렬성
+     - 동시에 실행하는 것 같은 효과
+     - 동시성 : 하나의 코어 멀티 스레드가 번갈아가면서 실행
+       > 일꾼1 : 작업1 > 작업2 > 작업3 (작업 수 > 일꾼)
+     - 병렬성 : 멀티 코어에서 개별 스레드를 동시에 실행
+       > (일꾼 > 작업 수)
+   2. Network
+   (1) Network ( net 그물 + work 일하다)
+     - 연결된 통신을 이용해서 컴퓨터의 자원 공유
+   (2) 서버와 클라이언트 
+     [Client]  ↔  [Server]
+     서비스사용    서비스제공
+     웹브라우저    네이버
+ 
+   [1] web 프로그래밍 (Http 통신) : 단방향통신 (클라이언트 요청시 서버 응답/종료)
+   [2] socket 프로그래밍 (채팅) : 양방향통신 (특정 포트를 통해 실시간 정보 교류/계속 연결되어 있음)
+ 
+   (3) Socket 프로그래밍
+     - TCP(연결형) / UDP(비연결형)
+     - TCP : 컴퓨터 연결, 전화
+     - UDP : 한 쪽에서 일방적으로 데이터를 보내는 편지
+   (4) TCP/IP
+     - ip : 패킷통신, 작은 단위로 나눠서 전송하는 방식, 전달 보증X, 받는 순서/보내는 순서가 다름
+     - tcp : ip 위에서 동작, 데이터의 전달을 보증하고, 보낸 순서대로 받게 해주는 역할
+     - 특징 : 연결 지향이므로 데이터는 정확하고 안전하게 전달, 통신 선로를 고정하므로 전송 속도가 느림
