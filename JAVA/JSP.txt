@@ -19,3 +19,24 @@
       http 요청을 처리할 웹어플리케이션(context) web.xml 파일 내용을 참고해서 요청 전달 
     [3] Catalina(Servlet) : 해결사
     [4] Jasper (Jsp Engine) : java+html 페이지 요청처리 응답(respone)
+
+2. JSP
+  (1) 기본요소
+    HTML + java
+    - 스크립트립 : <% %> 자바코드
+    - 지시자 : <%@ %>
+    - 주석 : <%-- --%>
+    - 표현 : <%= %> 출력
+    - 선언 : <%! %> 선언
+  (2) FORM 
+    서버쪽으로 정보 전달
+    - action : 요청처리
+    - method : 요청처리방식 (get, post)
+    - name : "데이터보관이름"
+  (3) 쿼리스트링
+    httpS:www/.google.com/search?q=apple
+    - url 뒤에 입력 데이트를 함꼐 제공하는 데이터 전달방법
+    - get 방식
+      클라이언트[#] ↔ 서버
+  (4) reueqst,getParameter('name')
+    - 클라이언트 ↔ 서버[#]
