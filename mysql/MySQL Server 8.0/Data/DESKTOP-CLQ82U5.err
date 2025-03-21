@@ -1,0 +1,34 @@
+2025-03-14T08:44:36.230181Z 0 [System] [MY-010116] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.41) starting as process 20176
+2025-03-14T08:44:36.257957Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-03-14T08:44:36.900667Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-03-14T08:44:37.246166Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-03-14T08:44:37.247751Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-03-14T08:44:37.299310Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2025-03-14T08:44:37.299372Z 0 [System] [MY-010931] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: ready for connections. Version: '8.0.41'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2025-03-14T09:02:43.133484Z 0 [System] [MY-013105] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Normal shutdown.
+2025-03-14T09:02:45.149833Z 0 [Warning] [MY-010909] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Forcing close of thread 19  user: 'root'.
+2025-03-14T09:02:45.154493Z 0 [Warning] [MY-010909] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Forcing close of thread 20  user: 'root'.
+2025-03-14T09:02:45.159097Z 0 [Warning] [MY-010909] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Forcing close of thread 22  user: 'root'.
+2025-03-14T09:02:45.759465Z 0 [System] [MY-010910] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Shutdown complete (mysqld 8.0.41)  MySQL Community Server - GPL.
+2025-03-14T09:02:46.516950Z 0 [Warning] [MY-011069] [Server] The syntax '--character-set-client-handshake' is deprecated and will be removed in a future release.
+2025-03-14T09:02:46.518741Z 0 [System] [MY-010116] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.41) starting as process 18012
+2025-03-14T09:02:46.520716Z 0 [Warning] [MY-013242] [Server] --character-set-server: 'utf8' is currently an alias for the character set UTF8MB3, but will be an alias for UTF8MB4 in a future release. Please consider using UTF8MB4 in order to be unambiguous.
+2025-03-14T09:02:46.520738Z 0 [Warning] [MY-013244] [Server] --collation-server: 'utf8mb3_general_ci' is a collation of the deprecated character set UTF8MB3. Please consider using UTF8MB4 with an appropriate collation instead.
+2025-03-14T09:02:46.547356Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-03-14T09:02:47.211059Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-03-14T09:02:47.875604Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-03-14T09:02:47.876335Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-03-14T09:02:47.937917Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2025-03-14T09:02:47.938013Z 0 [System] [MY-010931] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: ready for connections. Version: '8.0.41'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2025-03-17T09:22:33.592987Z 0 [System] [MY-013105] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Normal shutdown.
+2025-03-17T09:22:34.052149Z 0 [System] [MY-010910] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Shutdown complete (mysqld 8.0.41)  MySQL Community Server - GPL.
+2025-03-17T09:23:07.092286Z 0 [Warning] [MY-011069] [Server] The syntax '--character-set-client-handshake' is deprecated and will be removed in a future release.
+2025-03-17T09:23:07.103109Z 0 [System] [MY-010116] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.41) starting as process 4004
+2025-03-17T09:23:07.136605Z 0 [Warning] [MY-013242] [Server] --character-set-server: 'utf8' is currently an alias for the character set UTF8MB3, but will be an alias for UTF8MB4 in a future release. Please consider using UTF8MB4 in order to be unambiguous.
+2025-03-17T09:23:07.136630Z 0 [Warning] [MY-013244] [Server] --collation-server: 'utf8mb3_general_ci' is a collation of the deprecated character set UTF8MB3. Please consider using UTF8MB4 with an appropriate collation instead.
+2025-03-17T09:23:07.280936Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-03-17T09:23:08.485615Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-03-17T09:23:09.037068Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-03-17T09:23:09.037806Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-03-17T09:23:09.092262Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2025-03-17T09:23:09.092329Z 0 [System] [MY-010931] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: ready for connections. Version: '8.0.41'  socket: ''  port: 3306  MySQL Community Server - GPL.
