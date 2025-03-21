@@ -472,3 +472,9 @@
 0:0:0:0:0:0:0:1 - - [21/Mar/2025:18:04:45 +0900] "POST /project_mvc1_milk/milk_insert.jsp HTTP/1.1" 200 10
 0:0:0:0:0:0:0:1 - - [21/Mar/2025:18:07:06 +0900] "POST /project_mvc1_milk/milk_insert.jsp HTTP/1.1" 200 10
 127.0.0.1 - - [21/Mar/2025:18:10:26 +0900] "GET / HTTP/1.1" 200 11428
+127.0.0.1 - - [21/Mar/2025:18:11:44 +0900] "GET / HTTP/1.1" 200 11428
+0:0:0:0:0:0:0:1 - - [21/Mar/2025:18:11:46 +0900] "GET /project_mvc1_milk/milk.jsp HTTP/1.1" 200 6572
+0:0:0:0:0:0:0:1 - - [21/Mar/2025:18:11:52 +0900] "POST /project_mvc1_milk/milk_insert.jsp HTTP/1.1" 200 10
+0:0:0:0:0:0:0:1 - - [21/Mar/2025:18:13:51 +0900] "GET /project_mvc1_milk/milk.jsp HTTP/1.1" 200 6572
+0:0:0:0:0:0:0:1 - - [21/Mar/2025:18:13:55 +0900] "POST /project_mvc1_milk/milk_insert.jsp HTTP/1.1" 200 79
+0:0:0:0:0:0:0:1 - - [21/Mar/2025:18:13:56 +0900] "GET /project_mvc1_milk/milk.jsp HTTP/1.1" 200 6645
