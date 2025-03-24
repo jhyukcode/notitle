@@ -142,7 +142,7 @@
 		            method="방식"    데이터 노출안됨 (post)
 		            name		    oname, onum             text, number, email
 		      -->
-				<form action="milk_insert.jsp"  method="post">
+				<form action="milk_insert.jsp"  method="post" onsubmit="return blankFinder_Order()">
 				  <div class="mb-3 mt-3">
 				    <label for="email" class="form-label"> 주문할 우유이름</label>
 				    <input type="text" class="form-control" id="email" 
@@ -155,7 +155,23 @@
 				  </div>
 				  <button type="submit" class="btn btn-danger">주문하기</button>
 				</form> 
-		      <!--    -->
+				<script>
+				
+					function blankFinder_Order(){
+						let target1 = document.querySelector("#email");
+						let target2 = document.querySelector("#onum");
+						if(target1.value=="") {alert("우유 이름을 입력하지 않았습니다"); target1.focus(); return false;}
+						if(target2.value=="") {alert("수량을 입력하지 않았습니다"); target2.focus(); return false;}
+						return true;
+					}
+					
+				</script>
+		      <!--        function test1(){
+    	  let target = document.querySelector("#blank_target");
+    	//  console.log(target);
+    	 // console.log(typeof(target.value));
+    	 if(target.value=="") {alert("blank"); target.focus(); return;} 
+      }  -->
 		      <!--    -->
 		      </div>
 		    </div>
@@ -177,7 +193,7 @@
 		            method="방식"    데이터 노출안됨 (post)
 		            name		    ono,  oname, onum           number,  text, number 
 		      -->
-				<form action="milk_update.jsp"   method="post">
+				<form action="milk_update.jsp" method="post" onsubmit="return blankFinder_Edit()">
 				  <div class="mb-3 mt-3">
 				    <label for="ono_update" class="form-label"> 수정 주문번호</label>
 				    <input type="number" class="form-control" id="ono_update"  name="ono"
@@ -195,6 +211,19 @@
 				  </div>
 				  <button type="submit" class="btn btn-danger">주문수정하기</button>
 				</form> 
+				<script>
+				
+				function blankFinder_Edit(){
+					let target1 = document.querySelector("#ono_update");
+					let target2 = document.querySelector("#oname_update");
+					let target3 = document.querySelector("#onum_update");
+					if(target1.value=="") {alert("주문번호를 입력하지 않았습니다"); target1.focus(); return false;}
+					if(target2.value=="") {alert("우유 이름을 입력하지 않았습니다"); target2.focus(); return false;}
+					if(target3.value=="") {alert("수량을 입력하지 않았습니다"); target3.focus(); return false;}
+					return true;
+				}
+				
+				</script>
 		      <!--    -->
 		      <!--    -->
 		      </div>
@@ -217,7 +246,7 @@
 		            method="방식"    데이터 노출됨 (get)
 		            name		    ono                  number 
 		      -->
-				<form action="milk_delete.jsp"    method="get">
+				<form action="milk_delete.jsp"    method="get" onsubmit="return blankFinder_Delete()">
 				  <div class="mb-3">
 				    <label for="ono_delete" class="form-label"> 취소 주문번호</label>
 				    <input type="number" class="form-control" id="ono_delete" 
@@ -225,6 +254,16 @@
 				  </div>
 				  <button type="submit" class="btn btn-danger">주문하기</button>
 				</form> 
+				
+				<script>
+				
+				function blankFinder_Delete(){
+					let target = document.querySelector("#ono_delete");
+					if(target.value=="") {alert("주문 번호를 입력하지 않았습니다"); target.focus(); return false;}
+					return true;
+				}
+				
+				</script>
 		      <!--    -->
 		      <!--    -->
 		      </div>
