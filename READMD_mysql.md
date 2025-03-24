@@ -80,3 +80,12 @@
    SELECT : VALUES(*) FROM 'TABLE'
    UPDATE : 'TABLE' SET VALUES WHERE ~
    DELETE : FROM 'TABLE' WHER ~
+
+
+7. join 
+  (1) join
+     - join on
+     - join using
+     - natural join
+  (2) inner join / outer join
+  (3) left join / right join
