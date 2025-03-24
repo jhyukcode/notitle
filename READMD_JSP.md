@@ -40,3 +40,8 @@
       클라이언트[#] ↔ 서버
   (4) reueqst,getParameter('name')
     - 클라이언트 ↔ 서버[#]
+  
+3. Reqeust/Response
+  (1) Checkbox : 다중 선택이 가능하다
+  (2) Checkbox - Radio : 단일 선택이다
+  (3) Select : 바 형태로 되어 있으며 클릭 시 선택 옵션이 나타난다
