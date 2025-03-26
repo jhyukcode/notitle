@@ -1,110 +1,135 @@
 # WEB
 
-## 1. 컴퓨터 네트워크
-- **TCP/IP 기반으로 연결된 컴퓨터 네트워크**
-- **클라이언트 ↔ 서버**
+## (1) 컴퓨터 네트워크
+- TCP/IP 기반으로 연결되어 있는 컴퓨터 네트워크
+- 클라이언트 ↔ 서버
 
-### [1] Web 프로그래밍 (HTTP 통신)
-- **단방향 통신**
-  - 클라이언트 요청 → 서버 응답 → 종료
+### [1] Web 프로그래밍 (Http 통신) 
+- **단방향 통신** 
+  - 클라이언트 요청 시 서버 응답 후 종료
 
 ### [2] Socket 프로그래밍 (채팅)
 - **양방향 통신**
   - 특정 포트를 통해 실시간 정보 교류
-  - 계속 연결되어 있음
+  - 연결이 지속적으로 유지됨
 
-## 2. WS vs WAS
+## (2) WS vs WAS
 
-- **WS (Web Server)**: 정적 콘텐츠 제공 (html, css, js)
-  - 예: Apache
+- **WS (Web Server)** 
+  - 정적 콘텐츠(html, css, js) 웹 브라우저에 제공
+  - 예시: Apache
 
-- **WAS (Web Application Server)**: 동적 콘텐츠 제공
-  - 브라우저와 DBMS 사이에서 동작하는 미들웨어
-  - 예: Apache + Tomcat
+- **WAS (Web Application Server)** 
+  - 동적 콘텐츠 처리
+  - 브라우저와 DBMS 사이에 동작하는 미들웨어
+  - 예시: Apache + Tomcat
 
-## 3. Tomcat
+## (3) Tomcat
 
-- **Http Request 처리 흐름**
-  - Http Request → Catalina → Context → Servlet → Response
+- Http request(요청) → Catalina → Context → Servlet → response
 
 ### [1] Http Request
-- **Coyte**: 해결사를 찾기
-  - `web.xml` 파일을 참고하여 요청을 전달
+- 클라이언트의 요청을 서버로 전달
 
-### [2] Catalina (Servlet)
-- **해결사 역할** 수행
+### [2] Coyte가 해결사 찾기
+- http 요청을 처리할 웹 어플리케이션(context)의 `web.xml` 파일 내용을 참고하여 요청 전달
 
-### [3] Jasper (JSP Engine)
-- **Java + HTML 페이지 요청 처리 응답**
+### [3] Catalina (Servlet)
+- 실제 요청을 처리하는 해결사 역할
+
+### [4] Jasper (JSP Engine)
+- Java + HTML 페이지 요청 처리 후 응답 (response)
 
 ---
 
 # JSP
 
-## 1. 기본 요소
+## (1) 기본 요소
 - **HTML + Java**
+  - **스크립트릿**: `<% %>` 자바 코드
+  - **지시자**: `<%@ %>`
+  - **주석**: `<%-- --%>`
+  - **표현**: `<%= %>` 출력
+  - **선언**: `<%! %>` 선언
 
-### - 스크립트 리터
-```jsp
-<% %> 자바 코드
-- 지시자
-jsp
-복사
-<%@ %>
-- 주석
-jsp
-복사
-<%-- --%>
-- 표현
-jsp
-복사
-<%= %> 출력
-- 선언
-jsp
-복사
-<%! %> 선언
-2. FORM
-서버로 정보 전달
+## (2) FORM
+서버로 정보를 전달하는 방법
+- **action**: 요청 처리
+- **method**: 요청 처리 방식 (GET, POST)
+- **name**: 데이터 보관 이름
 
-action: 요청 처리 URL
+## (3) 쿼리 스트링
+- URL 뒤에 입력 데이터를 함께 제공하는 데이터 전달 방법
+- 예시: `https://www.google.com/search?q=apple`
+  - **GET 방식**: 클라이언트 ↔ 서버
 
-method: 요청 처리 방식 (GET, POST)
+## (4) request, getParameter('name')
+- **request** 객체를 통해 클라이언트에서 서버로 데이터를 전달
+- `getParameter('name')`: 클라이언트 → 서버
 
-name: 데이터 보관 이름
+---
 
-3. 쿼리 스트링
-예: https://www.google.com/search?q=apple
+# 내장 객체
 
-URL 뒤에 데이터를 제공하여 정보 전달
+## (1) request [요청]
+- **request.getParameter("name")**: 값 하나 가져오기
+- **request.getParameterValues("name")**: 값 여러 개 가져오기
 
-GET 방식
+## (2) response [응답]
+- **response.sendRedirect("처리경로")**  
+  - `response`/`request`가 유지되지 않음
+  - 같은 처리에서 `alert` 출력되지 않음
+  - 대체 방법:
+    - `location.href` 또는 `<meta http-equiv='refresh' content='초'; url='경로'>`
 
-- 클라이언트 ↔ 서버
-4. Request/Response
-Checkbox: 다중 선택 가능
+- **request.getRequestDispatcher("경로").forward(request, response)**  
+  - 요청과 응답 위임
+  - `response`/`request` 유지됨
 
-Radio: 단일 선택 가능
+## (3) scope 범위
+- **application(앱) > session(브라우저) > request(요청) > pageContext(페이지)**
 
-Select: 클릭 시 선택 옵션 표시
+## (4) session
+- **http 프로토콜**: 데이터 요청 후 응답을 받으면 바로 종료
+- 서버 측에 저장되는 정보
+- 보안성이 높음
 
-DBCP
-1. DBCP
-분산 응용 프로그램
+## (5) cookie
+- 클라이언트 측에 저장되는 정보
+- 보안성이 낮음
 
-2. 실습
-[1] 다운로드
-[commons]: dbcp, pool, collections 라이브러리 다운로드
+## (6) error
+- **(1) 4xx (클라이언트 오류)**
+  - 404: 페이지를 찾을 수 없음
+- **(2) 5xx (서버 측 오류)**
+  - 코드 상에 오류
+  - `web.xml`: 에러 설정
 
-[2] [WEB-INF] - Jar 파일 추가
-[3] DBCP - JAVA 파일 생성
-server.xml
-xml
-복사
+## (7) out
+- 출력
+
+---
+
+# 5. DBCP
+
+## (1) DBCP
+- **DBCP** (Database Connection Pooling): 분산 응용 프로그램에서 데이터베이스 연결을 효율적으로 관리하기 위한 기술
+
+## (2) 실습
+### [1] 다운로드
+- [commons] : dbcp, pool, collections
+
+### [2] [WEB-INF] - Jar 파일 추가
+
+### [3] DBCP - JAVA 파일 생성
+
+### `server.xml`
+```xml
 <Context>
   <Resource name="jdbc/mbasic" auth="Container" type="javax.sql.DataSource"
-             maxTotal="100" maxIdle="30" maxWaitMillis="10000"
-             username="root" password="1234" driverClassName="com.mysql.cj.jdbc.Driver"
-             url="jdbc:mysql://localhost:3306/mbasic"/>
+            maxTotal="100" maxIdle="30" maxWaitMillis="10000"
+            username="root" password="1234" driverClassName="com.mysql.cj.jdbc.Driver"
+            url="jdbc:mysql://localhost:3306/mbasic"/>
 </Context>
 web.xml
 xml
@@ -115,13 +140,11 @@ xml
   <res-type>javax.sql.DataSource</res-type>
   <res-auth>Container</res-auth>
 </resource-ref>
-DBCP 연동
+
+[DBCP 연동]
 java
 복사
 Context initContext = new InitialContext();
 Context envContext  = (Context)initContext.lookup("java:/comp/env");
 DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
 Connection conn = ds.getConnection();
-복사
-
-이제 복사하기 편하게 한 박스 안에 내용이 모두 담겨 있습니다. 쉽게 복사해서 사용하실 수 있습니다!
