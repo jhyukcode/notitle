@@ -131,9 +131,8 @@
             username="root" password="1234" driverClassName="com.mysql.cj.jdbc.Driver"
             url="jdbc:mysql://localhost:3306/mbasic"/>
 </Context>
-web.xml
-xml
-복사
+
+````web.xml
 <resource-ref>
   <description>DB Connection</description>
   <res-ref-name>jdbc/mbasic</res-ref-name>
@@ -142,9 +141,7 @@ xml
 </resource-ref>
 
 [DBCP 연동]
-java
-복사
-Context initContext = new InitialContext();
+````Context initContext = new InitialContext();
 Context envContext  = (Context)initContext.lookup("java:/comp/env");
 DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
 Connection conn = ds.getConnection();
