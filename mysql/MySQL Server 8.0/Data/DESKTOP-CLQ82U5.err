@@ -32,3 +32,15 @@
 2025-03-17T09:23:09.037806Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
 2025-03-17T09:23:09.092262Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
 2025-03-17T09:23:09.092329Z 0 [System] [MY-010931] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: ready for connections. Version: '8.0.41'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2025-03-26T07:46:51.020349Z 0 [Warning] [MY-011069] [Server] The syntax '--character-set-client-handshake' is deprecated and will be removed in a future release.
+2025-03-26T07:46:51.034511Z 0 [System] [MY-010116] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.41) starting as process 4240
+2025-03-26T07:46:51.072442Z 0 [Warning] [MY-013242] [Server] --character-set-server: 'utf8' is currently an alias for the character set UTF8MB3, but will be an alias for UTF8MB4 in a future release. Please consider using UTF8MB4 in order to be unambiguous.
+2025-03-26T07:46:51.072474Z 0 [Warning] [MY-013244] [Server] --collation-server: 'utf8mb3_general_ci' is a collation of the deprecated character set UTF8MB3. Please consider using UTF8MB4 with an appropriate collation instead.
+2025-03-26T07:46:51.358065Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-03-26T07:46:53.286248Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-03-26T07:46:53.785292Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2025-03-26T07:46:53.790698Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2025-03-26T07:46:53.883554Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-03-26T07:46:53.884331Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-03-26T07:46:53.939176Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2025-03-26T07:46:53.939251Z 0 [System] [MY-010931] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: ready for connections. Version: '8.0.41'  socket: ''  port: 3306  MySQL Community Server - GPL.

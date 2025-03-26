@@ -38,7 +38,6 @@
 		
 		<%@page import="java.sql.*"%>
 		<%
-		// select * from milk; - PreparedStatement  
 		Connection conn = null;  PreparedStatement pstmt = null;  ResultSet rset = null;
 		try{
 			//1. 드라이버연동
@@ -271,9 +270,6 @@
 		  </div>
 		
 		</div>	
-	
-	 
-		
 	</div>
 </body>
 </html> 
