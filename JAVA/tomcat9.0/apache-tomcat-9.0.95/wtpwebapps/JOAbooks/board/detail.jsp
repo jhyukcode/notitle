@@ -15,24 +15,25 @@
 	<div class="my-3">
 		<div class="">
 			<span><i class="bi bi-book"></i> 이름</span>
-			<p></p>
+			<p>${dto.bname}</p>
 		</div>
 	</div>
 	<div class="my-3">
 		<div class="">
 			<span><i class="bi bi-book"></i> 제목</span>
-			<p></p>
+			<p>${dto.btitle}</p>
 		</div>
 	</div>
 	<div class="my-3">
 		<div class="">
 			<span><i class="bi bi-book"></i> 내용</span>
-			<p></p>
+			<textarea class="form-control" readonly>${dto.bcontent }</textarea>
 		</div>
 	</div>
 	<div class="text-end">
-		<a href="" class="btn btn-danger">수정</a> <a href=""
-			class="btn btn-danger">삭제</a> <a href="" class="btn btn-info">목록보기</a>
+		<a href="edit_view.do?bno=${dto.bno}" class="btn btn-danger">수정</a>
+		<a href="delete.do?bno=${dto.bno}" class="btn btn-danger">삭제</a>
+		<a href="list.do" class="btn btn-info">목록보기</a>
 	</div>
 </div>
 
