@@ -1,0 +1,65 @@
+■ PART001 
+Q1. mvc 란?
+- 서로영향없이 쉽게 고칠수 있는 애플케이션
+- m : model
+- v  : view
+- c  : controller
+
+Q2. mvc1 vs  mvc2 란?
+- mvc1 :   controller 역할을 jsp 담당 , 스파게티소스
+- mvc2 :   controller 역할을 servlet 이 담당
+
+Q3. DBCP란?
+- 분산응용프로그램
+- db커텍션 객체를 미리 (pool)에 생성해두고 사용
+- 데이터베이스 과부하줄이기
+
+Q4. jsp는   ( java )  + (  html  )    
+     mvc에서의 역할은?   view
+
+Q5.  servlet 은  (  java  ) 
+     mvc에서의 역할은?  controller
+
+Q6. DBCP를 설정하는 방법을 설명하시오.
+1. jar 3개다운로드 - dbcp, collections, pool
+2. Server - [server.xml]  pool 설정  <Resource />
+3. 진행프로젝트 - [webapp]-[WEB-INF]- web.xml  <resource-ref>
+4. test파일
+
+Q7.  dynamic web project에서 
+ jsp 가 위치하는 영역은  (   webapp  )   , 
+ servlet이 위치하는 영역은 (  Java Resources ) , 
+ 라이브러리들 .jar 파일들이 들어가는위치는 (  [WEB-INF]-lib  ) 
+
+Q8.  request 가오면 (  [WEB-INF]- web.xml  )  파일을 참고해서 controller를 찾는다.
+
+Q9.  로그인 후 id를 유지하려고하면 (   session )  를 이용한다.
+      셋팅이름은  username , 값은 name변수로  지정하시오.
+      session.setAttribute( "username" , name );
+
+Q10.  application scope의 범위를 적으시오. 
+     application > session > request > pageContext
+
+
+■ PART002
+#1. frontcontroller board 게시판완성
+#2. 개발사이트 api + ajax
+#3. [숙제] - api 2개이상 / upgrade 기능업그레이드 
+
+□1) dynamic web project  - JOAbooks
+□2) inc - header/footer 
+□3) error page 설정 -  404 , 500
+□4) dbcp 연동   
+
+
+
+
+
+
+
+
+
+
+ 
+
+

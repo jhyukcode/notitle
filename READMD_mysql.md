@@ -74,3 +74,18 @@
                                modify(필드수정) 'field_name' 자료헝 속성
                                change(필드수정) 'field_name' 'new_field_name' 자료형 속성
                                rename          'new_table_name'
+
+6. 조작어 DML
+   INSERT : INTO 'TABLE' VALUES ~
+   SELECT : VALUES(*) FROM 'TABLE'
+   UPDATE : 'TABLE' SET VALUES WHERE ~
+   DELETE : FROM 'TABLE' WHER ~
+
+
+7. join 
+  (1) join
+     - join on
+     - join using
+     - natural join
+  (2) inner join / outer join
+  (3) left join / right join
