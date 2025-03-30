@@ -17,14 +17,23 @@
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="list.do">BOARD</a>
+    <a class="navbar-brand" href="<%=request.getContextPath()%>/list.do">MAIN</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item" style="text-align: right;"> <a class="nav-link" href="javascript:void(0)">Sign Up</a> </li>
-        <li class="nav-item" style="text-align: right;"> <a class="nav-link" href="javascript:void(0)">Login</a> </li>
+      <% String id = (String)session.getAttribute("userid");
+      if( id!=null ){ %>
+      <!-- 로그인 O -->
+      <li class="nav-item" style="text-align: right;"> <a class="nav-link" href="<%=request.getContextPath()%>/board/mypage.jsp" style="color: white;"><%=id %></a></li>
+      <li class="nav-item" style="text-align: right;"> <a class="nav-link" href="<%=request.getContextPath()%>/board/logout_action.jsp">LOGOUT</a> </li>
+      
+      <!-- 로그인 X -->
+      <% } else { %>
+      <li class="nav-item" style="text-align: right;"> <a class="nav-link" href="<%=request.getContextPath()%>/board/sign_up.jsp">Sign Up</a> </li>
+      <li class="nav-item" style="text-align: right;"> <a class="nav-link" href="<%=request.getContextPath()%>/board/login.jsp">Login</a> </li>
+      <%  } %>
       </ul>
     </div>
   </div>
