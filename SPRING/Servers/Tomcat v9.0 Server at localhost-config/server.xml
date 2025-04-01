@@ -167,7 +167,7 @@
 	
 
       
-      <Context docBase="projectName" path="/myapp" reloadable="true" source="org.eclipse.jst.jee.server:projectName"/></Host>
+      <Context docBase="projectName" path="/myapp" reloadable="true" source="org.eclipse.jst.jee.server:projectName"/><Context docBase="spring004_mybatis" path="/spring004_mybatis" reloadable="true" source="org.eclipse.jst.jee.server:spring004_mybatis"/></Host>
     </Engine>
   </Service>
 </Server>
