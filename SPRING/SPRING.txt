@@ -175,3 +175,34 @@
     // 생성자, tostring, getters/setters
 
     DAO (UserDao, UserDaoImpl, user-mapper.xml)
+
+  ## mvc project
+    1. mvc
+      > 서로 영향없이 쉽게 고칠 수 있는 애플리케이션 제작
+      Model 정보 : dto, dao, serivce
+      View 화면 : html, css, js/jquery
+      Controller 처리 : request, execute, response
+    2. mvc1 vs mvc2
+      mvc1 : controller의 역할을 jsp가 담당
+      mbc2 = controller의 역할을 servlet이 담당
+    3.  SPRING MVC
+    [클라이언트]
+    ↓ ① list.do
+    [FrontController]
+    <<DispatcherServlet>>  → ② HandlerMapping   - @Controller
+                  ↓   
+                    ③ 세부Controller  - db가 db처리                         
+        ↓↑
+            ④  View
+
+      ① 클라이언트 ( 코요테 - web.xml  - root-coontext.xml / servet-context.xml / DispatcherServlet)
+      ② DispatcherServlet   - HandlerMapping   - @Controller / 처리할 Controller 확인
+      ③ 세부Controller  클라이언트 요청처리 (service - 비지니스로직)
+      ④ 요청결과와 View정보를  DispatcherServlet 줌  / View를 개체를 생성해서 응답
+
+
+      1. 실습
+      1) pom.xml   spring-webmvc 등록  
+      2) web.xml   ContextLoaderListener (스프링구동)  / DispatcherServlet (Frontcontroller)
+              root-coontext.xml (db설정) / servet-context.xml (view servlet 설정)
+      3) config/servet-context.xml 

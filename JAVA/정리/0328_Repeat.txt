@@ -1,0 +1,74 @@
+Q11.  데이터 베이스 언어인 dml 을 설명하시오.
+crud
+데이터 조작어 : insert, update, delete, select
+
+Q12.  PreparedStatement 에서   sql 문 실행서  insert, update, delete 에서는 ( executeUpdate   )를 사용.  
+        select에서는 (  executeQuery  )를 사용한다.
+
+Q13. frontController 패턴을 설명하시오.
+1. mvc
+2. mvc1 - jsp가 controller 역할
+3. mvc2 - servlet이 controller 역할
+4. frontcontroller - 클라이언트가 보낸 요청을 받아서 공통 작업(인증, 권한)을 먼저 수행
+		적절한 세부 controller에게 작업을 위임 ( 처리 + 뷰 선택 )
+
+Q14. *.do를 설정하려고 한다.   setvlet의 경로를 가져오는 request메서드는?
+1. @WebServlet("*.do") : Servlet 테스트
+2. web.xml : 배포관리용도
+	<servlet></servlet>
+	<servlet-mapping></servlet-mapping>
+
+Q15.  다형성이란?
+한 가지 자료형으로 여러 자료형 관리
+부모 자료형으로 자식 자료형을 관리 
+
+오버라이딩과 오버로드
+
+
+Q16.  request/ response유지하고 경로를 숨기고 다른화면으로 넘어가는 것은?
+request.getRequestDispatcher("경로").forward(request, response)
+
+
+
+Q17.   request/ response유지안되고  다른화면으로 넘어가는  3가지 방법은?
+response.sendRedirect("경로"0);
+out.println("<script>alert('알림창'); location.href='경로';</script>");
+out.println("meta http-equiv='refresh content='지연시간'; url='경로');
+
+
+
+Q18.   다음과 같이 경로를 넘어가려고 한다. 
+    request/ response유지안되고  다른화면으로 넘어가는  3가지 방법중  alert 가 처리 안되는 것은?
+
+sendRedirect
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Service
+    [com.company.service]
+
+        <<interface>> BoardService   - exec(request, response)   
+   ↑             ↑            ↑            ↑            ↑           ↑  
+   BList   BWrite        BDetail     BEditView     BEdit       BDelete   
+
+>   BList     전체리스트   -  dao.list()
+>   BWrite    글삽입       -  dao.insert(dto)  / 알림창- 성공/실패
+>   BDetail   상세보기     -  dao.updateHit(dto) , dao.detail(dto)
+>   BEditView 글수정폼   -  dao.detail(dto)
+>   BEdit     글수정        -  dao.update(dto)  / 알림창- 성공/실패
+>   BDelete   해당글삭제-  dao.delete(dto)  / 알림창- 성공/실패
