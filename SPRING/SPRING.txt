@@ -284,3 +284,54 @@
           상세보기 : 조회수 올리는 sql / 해당 번호 상세보기 데이터
           수정보기 : -                / 해당 번호 상세보기 데이터
           글쓰기 : 이미지 올리기 기능 / 그 이미지 이름 경로 및 데이터 인서트 시 저장
+
+    lombok
+        0. https://mvnrepository.com/artifact/org.projectlombok/lombok
+    1. https://projectlombok.org/download
+    2. 다운로드
+    3. 더블클릭 /   cmd창     java  -jar    파일이름.jar
+        설치경로 설정
+    4. spring 다시 열기
+
+    ※ 만약 인식이 안되면....
+      1. C드라이브로 스프링zip. 옮기기 - 압축풀기
+      2. 경로 짧게
+
+    Aspect
+    AOp Apsect Orineted Programming
+    Aspect : 관점, 어떤 행동, 시작, 완료, 반복 등 나타내는 형태
+    Advice 부가기능정의 +적용부위 = Aspect
+     
+    용어
+    Taget 대상
+    Advice 부가기능정의
+    PotintCut 적용 타겟에 메서드로 대상을 선별하는 정규식
+    Weaving Target에 Advice를 처리하는 과정
+
+    특징
+    프록시 기반의 aop
+    프록시(대리)
+    프록시 대상에 부가기능을 처리하는 과정에서 생성되는 객체
+
+    호출 -> [Proxy(Target)] 
+
+    HikariCP (dbcp/sql 과정 다 보이게)
+      1. pom.xml
+      2. db.properties / root-context.xml
+      3. hikari properties 설정
+
+
+
+    Tx (sql 여러개 실행될 떄 중간에 실패하면 sql 다 처리 안되게)
+      트랙잭션
+      여러 단계의 처리를 하나의 처리처럼 다루는 기능들
+      반영 (commit) / 되돌리기 (rollback)
+        > pom.xml
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-tx</artifactId>
+         <version>${org.springframework-version}</version>
+      </dependency>
+        > root-context.xml
+      DataSourceTransactionManager
+      <tx:annotation=driven/>
