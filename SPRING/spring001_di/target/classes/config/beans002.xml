@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Q1. CalcRectangle rect = new CalcRectangle -->
+	<bean id="rect" class="com.company.iotest.CalcRectangle"/>
+	
+	<!-- Q2. CalcTriangle tri = new CalcTriangle -->
+	<bean id="tri" class="com.company.iotest.CalcTriangle"/>
+	
+	<!-- Q1. MyArea myArea = new MyArea() -->
+	<bean id="myArea" class="com.company.iotest.MyArea">
+		<constructor-arg index="0" value="sam"/>
+		<constructor-arg index="1" value="tri"/>
+	</bean>
+</beans>
