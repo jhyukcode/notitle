@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<!-- layout:decorate="~{fragments/layout}" : fragments 폴더 layout 렌더링 -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<!-- <th:block layout:fragment="content"/> -->
+<div layout:fragment="content">
+	<div class="container mt-5">
+		<!-- 게시글 작성 폼 -->
+		<div class="card shadow-lg" style="border-radius: 15px;">
+			<!-- 헤더 부분 -->
+			<div class="card-header"
+				style="background: linear-gradient(to right, #6a11cb, #2575fc); color: #ffffff; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+				<h3 class="mb-0 text-center">게시글 작성</h3>
+			</div>
+			<!-- 카드 바디 부분 -->
+			<div class="card-body"
+				style="background-color: #f9f9f9; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
+				<form th:action="@{/board/insert}" method="POST" onsubmit="return writeForm()">
+
+					<!-- 제목 -->
+					<div class="mb-4">
+						<label for="btitle" class="form-label" style="font-size: 1.1rem; color: #333;">제목</label>
+						<input type="text" class="form-control" id="btitle" name="btitle" placeholder="제목을 입력하세요" required style="border-radius: 10px;">
+					</div>
+
+					<div class="mb-4 row">
+						<!-- 이름 -->
+						<div class="col-md-6">
+							<label for="member" class="form-label" style="font-size: 1.1rem; color: #333;">이름</label>
+							<input type="text" class="form-control" id="member" name="member" placeholder="이름을 입력하세요" required style="border-radius: 10px;">
+						</div>
+
+						<!-- 비밀번호 -->
+						<div class="col-md-6">
+							<label for="bpass" class="form-label" style="font-size: 1.1rem; color: #333;">비밀번호</label>
+							<input type="password" class="form-control" id="bpass" name="bpass" placeholder="비밀번호를 입력하세요" required style="border-radius: 10px;">
+						</div>
+					</div>
+
+					<!-- 내용 -->
+					<div class="mb-4">
+						<label for="bcontent" class="form-label" style="font-size: 1.1rem; color: #333;">내용</label>
+						<textarea class="form-control" id="bcontent" name="bcontent" rows="5" placeholder="내용을 입력하세요" required style="border-radius: 10px;"></textarea>
+					</div>
+
+					<!-- 첨부파일 -->
+					<div class="mb-4">
+						<label for="bfile" class="form-label" style="font-size: 1.1rem; color: #333;">첨부파일</label> 
+						<input type="file" class="form-control" id="bfile" name="bfile" style="border-radius: 10px;">
+					</div>
+
+					<!-- 제출 버튼 -->
+					<div class="d-flex justify-content-end">
+						<button type="submit" class="btn" style="background-color: #2575fc; color: white; border-radius: 30px; padding: 10px 30px;">작성</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>

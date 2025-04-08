@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<!-- layout:decorate="~{fragments/layout}" : fragments 폴더 layout 렌더링 -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<!-- <th:block layout:fragment="content"/> -->
+	<div layout:fragment="content">
+		<h5 th:text="${dto}"></h5>
+		
+<div class="container mt-5">
+    <!-- 게시글 수정 폼 -->
+    <div class="card shadow-sm">
+        <div class="card-header" style="background-color: #343a40; color: #f7a400;">
+            <h3 class="mb-0">게시글 수정</h3>
+        </div>
+        <div class="card-body" style="background-color: #f1f1f1;">
+            <form action="/board/update/{id}" method="POST" enctype="multipart/form-data">
+                <!-- 제목 -->
+                <div class="mb-3">
+                    <label for="title" class="form-label" style="color: #343a40;">제목</label>
+                    <input type="text" class="form-control" id="title" name="title"
+                        placeholder="제목을 입력하세요" value="${board.title}" required>
+                </div>
+
+                <!-- 이름과 비밀번호는 같은 줄에 배치 -->
+                <div class="mb-3 row">
+                    <!-- 이름 -->
+                    <div class="col-md-6">
+                        <label for="name" class="form-label" style="color: #343a40;">이름</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                            value="${board.name}" readonly
+                            style="background-color: #e9ecef; color: #6c757d; border: 1px solid #ced4da;">
+                        <!-- 읽기 전용 필드 배경색을 연한 회색으로 변경하고, 텍스트 색을 연하게 -->
+                    </div>
+
+                    <!-- 비밀번호 -->
+                    <div class="col-md-6">
+                        <label for="password" class="form-label" style="color: #343a40;">비밀번호</label>
+                        <input type="password" class="form-control" id="password"
+                            name="password" placeholder="비밀번호를 입력하세요" required>
+                    </div>
+                </div>
+
+                <!-- 내용 -->
+                <div class="mb-3">
+                    <label for="content" class="form-label" style="color: #343a40;">내용</label>
+                    <textarea class="form-control" id="content" name="content" rows="5"
+                        placeholder="내용을 입력하세요" required>${board.content}</textarea>
+                </div>
+
+                <!-- 첨부파일 -->
+                <div class="mb-3">
+                    <label for="file" class="form-label" style="color: #343a40;">첨부파일</label>
+                    <input type="file" class="form-control" id="file" name="file">
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <!-- 버튼 색상 수정: 주황색 -->
+                    <button type="submit" class="btn" style="background-color: #f7a400; color: white;">수정하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
+		
+	</div>
