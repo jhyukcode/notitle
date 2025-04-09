@@ -65,6 +65,14 @@ table td {
     <div class="text-end mb-3">
         <a href="/board/insert" class="btn btn-primary">게시글 작성</a>
     </div>
+    <script>
+    	let msg = "[[${msg}]]"
+    	
+    	console.log(msg);
+    	if(msg=='fail'){history.go(-1); alert('정보를 확인해주세요');}
+    	else if (msg.length!=0) {alert(msg);}
+    	
+    </script>
 
 			<table class="table">
 				<thead>
@@ -82,10 +90,10 @@ table td {
 					<!-- th:text=" 동적으로 꺼내온 데이터 " -->
 
 					<tr th:each="dto, state : ${list}">
-						<td th:text="${state.index}+1"></td>
+						<td th:text="${list.size() - state.index}"></td>
 						<td><a th:href="@{/board/detail/{id}(id=${dto.id})}" th:text="${dto.btitle}" style="color:black; text-decoration:none;"></a></td>
 						<td th:text="${dto.member.name}"></td>
-						<td th:text="${dto.create_date}"></td>
+						<td th:text="${ #temporals.format(dto.create_date, 'yyyy-MM-dd HH:mm')}"></td>
 						<td th:text="${dto.bhit}"></td>
 					</tr>
 

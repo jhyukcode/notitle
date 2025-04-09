@@ -17,21 +17,21 @@
 			<div class="card-header"
 				style="background-color: #6c757d; color: #ffffff;">
 				<!-- 게시글 제목을 카드 헤더로 이동 -->
-				<h4 class="mb-0">게시글 제목</h4>
+				<h4 class="mb-0" th:text="${dto.btitle}"></h4>
 			</div>
 
 			<div class="card-body"
 				style="background-color: #f8f9fa; color: #343a40;">
 				<!-- 작성자 및 작성일 -->
 				<div class="mb-3">
-					<span class="badge bg-info text-dark">작성자: 홍길동</span> <span
-						class="badge bg-light text-dark">작성일: 2025-04-08 12:13</span>
+					<span class="badge bg-info text-dark" th:text="${dto.member.name}"></span> 
+					<span class="badge bg-warning text-dark" th:text="${ #temporals.format(dto.create_date, 'yyyy-MM-dd HH:mm')}"></span>
+					<span class="badge bg-dark text-white" th:text="${dto.bhit}"></span>
 				</div>
 
 				<!-- 내용 -->
 				<div class="mb-3" style="white-space: pre-wrap;">
-					<p>이곳은 게시글의 내용이 표시되는 부분입니다. 사용자로부터 받은 글이 여기에 표시됩니다. 내용이 길어지면dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-						자동으로 줄바꿈이 됩니다.</p>
+					<textarea  th:text="${dto.bcontent}" readonly  class="form-control"></textarea>
 				</div>
 
 				<!-- 첨부파일 (있는 경우) -->

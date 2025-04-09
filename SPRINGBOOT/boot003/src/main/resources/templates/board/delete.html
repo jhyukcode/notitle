@@ -10,5 +10,33 @@
 
 <!-- <th:block layout:fragment="content"/> -->
 	<div layout:fragment="content">
-		delete
+		 <div class="container mt-5">
+        <h2 class="text-center mb-4">게시글 삭제</h2>
+        <div class="card">
+            <div class="card-body">
+                <form th:action="@{/board/delete}" method="post" id="writeForm" onsubmit="return form()">
+                    <input type="hidden" name="postId" value="${postId}"> <!-- 게시글 ID -->
+
+                    <div class="mb-3">
+                        <label for="bpass" class="form-label">비밀번호를 입력하세요:</label>
+                        <input type="password" id="bpass" name="bpass" class="form-control">
+                        <input type="hidden" name="id" id="id" th:value="${id}" class="form-control" readonly>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-danger">삭제</button>
+                    </div>
+                </form>
+            </div>
+            <script>
+				function form() {  
+					let bpass = document.getElementById("bpass");
+					if (bpass.value == "") {
+						alert("빈칸입니다"); 	bpass.focus(); 	return false;
+					}
+				}
+			</script>
+            
+        </div>
+    </div>
 	</div>

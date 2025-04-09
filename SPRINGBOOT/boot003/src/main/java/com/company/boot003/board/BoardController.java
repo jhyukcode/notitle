@@ -6,66 +6,77 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller @RequiredArgsConstructor
 public class BoardController {
 	
-	// v1. @Autowired BoardService service;
+	//ver-1 @Autowired  BoardService service;
 	private final BoardService service;
 	
 	@GetMapping("/board/list")
-	public String list(Model model) { 
-		model.addAttribute("list", service.findAll());
-		// 전체리스트 뽑기
-		return "board/list";// board 폴더안에 / list 파일
-	}
+	public String list(Model model){
+		model.addAttribute("list" , service.findAll());  //##전체리스트뽑고
+		return "board/list"; // board 폴더안에 / list파일
+	} // http://localhost:8080/board/list
+	
 	
 	@GetMapping("/board/detail/{id}")
-	public String detail(@PathVariable Long id, Model model) {
-		model.addAttribute("dto", service.find(id));
-		// 조회수 올리고 상세보기 기능
-		return "board/detail";// board 폴더안에 / list 파일
+	public String detail( @PathVariable  Long id,  Model model){
+		model.addAttribute("dto" , service.find(id)); 
+		return "board/detail"; // board 폴더안에 / list파일
+	} // http://localhost:8080/board/detail/5 (있는번호)
+
+	///////////////////////////////////////////////////////////////
+	@GetMapping("/board/insert")
+	public String insert_get(){ return "board/write"; }
+	// http://localhost:8080/board/insert    ( 글쓰기 폼)
+	
+	@PostMapping("/board/insert")
+	public String insert_post( Board board  ,  @RequestParam Long member_id){ 
+		System.out.println("....." + board);
+		System.out.println("....." + member_id);
+		service.insert(board , member_id);  //##
+		return "redirect:/board/list"; 
+	} // form테스트   ( 글쓰기 기능 - 갱신된리스트 )
+	///////////////////////////////////////////////////////////////
+	//  @RequestParam - form, query string, 데이터 헤더로부터 데이터 추출
+	//  @PathVariable - url 경로의 변수를 추출할때 사용
+	
+	
+	///// insert, update, delete
+	@GetMapping("/board/update/{id}")
+	public String update_get( @PathVariable Long id , Model model){ 
+		model.addAttribute("dto",service.update_view(id));
+		return "board/edit"; 
 	}
+	// http://localhost:8080/board/update/5    ( 글수정 폼)
 	
-	@GetMapping("board/insert")
-	public String insert_get() { 
-		return "board/write";// board 폴더안에
-		// 글쓰기폼
-	}	// http://localhost:8383/board/insert
+	@PostMapping("/board/update")
+	public String update_post( Board board  , RedirectAttributes rttr){ 
+		String msg = "fail";
+		if( service.update(board) > 0) {  msg = "글 수정완료!";}
+		rttr.addFlashAttribute("msg", msg);
+		return "redirect:/board/detail/" + board.getId(); 
+	} // 폼태그에서 테스트   
 	
-	@PostMapping("board/insert")
-	public String insert_post(Board board, @RequestParam Long member_id) { 
-		
-		service.insert(board); 
-		return "redirect:/board/list";
-		// 글쓰기 기능 - 갱신된 리스트
+	
+	@GetMapping("/board/delete/{id}")
+	public String delete_get( @PathVariable Long id , Model model){
+		model.addAttribute("id" , id);
+		return "board/delete"; 
 	}
+	// http://localhost:8080/board/delete   ( 글삭제 폼)
 	
-	@GetMapping("board/update/{id}")
-	public String update_get (@PathVariable Long id, Model model) { 
-		model.addAttribute("dto", service.find(id));
-		return "board/update";
-		// 수정폼
-	}
-	
-	@PostMapping("board/update/{id}")
-	public String update_post (Board board) {
-		// 수정기능
-		return "redirect:/board/list";
-		// 수정 기능 - 갱신된 리스트
-	}
-	
-	@GetMapping("board/delete")
-	public String delete_get() {
-		return "board/delete";
-	}	// 삭제폼
-	
-	@PostMapping("board/delete/{id}")
-	public String delete_post(Board board) {
-		return "redirect:/board/list";
-	}	// 삭제기능
+	@PostMapping("/board/delete")
+	public String delete_post( Board board , RedirectAttributes rttr ){ 
+		String msg = "fail";
+		if( service.delete(board)  > 0) { msg="글삭제성공!";}
+		rttr.addFlashAttribute("msg", msg);
+		return "redirect:/board/list"; 
+	} // http://localhost:8080/board/update    ( 글수정 기능 - 갱신된리스트 )
 }
 
 /*
