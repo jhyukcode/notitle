@@ -1,0 +1,255 @@
+■ BANK DB  CRUD ver
+-- 1) 테이블설계
+    번호    no     int                      필수입력   숫자증가  기본키
+    아이디  id         vachar(100)     필수입력   
+    비번     pass      vachar(100)     필수입력      
+    잔액    balance  double                               default 0
+
+>>>>>>>  테이블작성
+
+ create table `bank`(
+`no` int not null primary key auto_increment,
+`id` varchar(100) not null,
+`pass` varchar(100) not null,
+`balance` double default 0);
+
+-- 2) SQL 작성 : 화면보고
+create    (insert)   사용자입력
+read      (select)      사용자조회
+update  (update)
+delete   (delete)
+
+ 
+
+/*
+
+ 
+======BANK======
+*1. 추가
+*2. 조회
+*3. 입금
+*4. 출금
+*5. 삭제
+*9. 종료
+입력 >> 1
+
+
+*ID : first
+*PASS : 1111 
+*BALANCE : 10000
+
+>>>> 필요한 sql
+insert into bank (id, pass, balance) values ('first', 1111, 10000);
+
+======BANK======
+*1. 추가
+*2. 조회
+*3. 입금
+*4. 출금
+*5. 삭제
+*9. 종료
+입력 >> 2
+
+
+*ID : first
+*PASS : 1234
+조회가 실패했습니다. 
+
+아무키나 누르세요. 
+
+
+>>>> 필요한 sql
+select * from bank where id='first' and pass=1234;
+
+======BANK======
+*1. 추가
+*2. 조회
+*3. 입금
+*4. 출금
+*5. 삭제
+*9. 종료
+입력 >> 2
+
+
+*ID : first
+*PASS : 1111
+
+
+======조회결과======
+
+아이디 : first 
+잔액 : 10000
+암호 : 1111
+조회가 성공했습니다. 
+
+아무키나 누르세요. 
+
+>>>> 필요한 sql
+
+select * from bank where id='first' and pass=1111;
+
+======BANK======
+*1. 추가
+*2. 조회
+*3. 입금
+*4. 출금
+*5. 삭제
+*9. 종료
+입력 >> 3
+
+
+===== 입금 계좌정보 입력 =====
+*ID : first
+*PASS : 1234
+계좌 정보가 없습니다. 
+
+update bank set balance=balance+10000 where id='first' and pass=1234;
+
+======BANK======
+*1. 추가
+*2. 조회
+*3. 입금
+*4. 출금
+*5. 삭제
+*9. 종료
+입력 >> 3
+===== 입금 계좌정보 입력 =====
+
+
+*ID : first
+*PASS : 1111
+입금액 : 10000
+
+
+>>>> 필요한 sql 
+
+update bank set balance=balance+10000 where id='first' and pass=1111;
+
+======BANK======
+*1. 추가
+*2. 조회
+*3. 입금
+*4. 출금
+*5. 삭제
+*9. 종료
+입력 >> 2
+
+
+*ID : first
+*PASS : 1111
+
+======조회결과======
+
+아이디 : first
+나이 : 10
+잔액 : 20000
+암호 : 1111
+조회가 성공했습니다. 
+
+아무키나 누르세요. 
+
+select * from bank where id='first' and pass=1111;
+
+======BANK======
+*1. 추가
+*2. 조회
+*3. 입금
+*4. 출금
+*5. 삭제
+*9. 종료
+입력 >> 4
+===== 출금 계좌정보 입력 =====
+
+
+*ID : first
+*PASS : 1111
+출금액 : 500
+
+update bank set balance=balance-500 where id='first' and pass=1111;
+
+======BANK======
+*1. 추가
+*2. 조회
+*3. 입금
+*4. 출금
+*5. 삭제
+*9. 종료
+입력 >> 2
+
+
+*ID : first
+*PASS : 1111
+
+======조회결과======
+
+아이디 : first
+나이 : 10
+잔액 : 19500
+암호 : 1111
+조회가 성공했습니다. 
+
+아무키나 누르세요. 
+
+select * from bank where id='first' and pass=1111;
+
+======BANK======
+*1. 추가
+*2. 조회
+*3. 입금
+*4. 출금
+*5. 삭제
+*9. 종료
+입력 >> 5
+
+
+*ID : first
+*PASS : 1234
+계좌 정보가 없습니다. 
+
+delete from bank where id='first' and pass=1234;
+
+======BANK======
+*1. 추가
+*2. 조회
+*3. 입금
+*4. 출금
+*5. 삭제
+*9. 종료
+입력 >> 5
+
+
+*ID : first
+*PASS : 1111
+삭제하시겠습니까 ? (Y/N)y
+
+delete from bank where id='first' and pass=1111;
+
+
+======BANK======
+*1. 추가
+*2. 조회
+*3. 입금
+*4. 출금
+*5. 삭제
+*9. 종료
+입력 >> 2
+
+
+*ID : first
+*PASS : 1111
+조회가 실패했습니다. 
+
+아무키나 누르세요. 
+
+select * from bank where id='first' and pass=1111;
+
+======BANK======
+*1. 추가
+*2. 조회
+*3. 입금
+*4. 출금
+*5. 삭제
+*9. 종료
+입력 >> 9
+
+*/
