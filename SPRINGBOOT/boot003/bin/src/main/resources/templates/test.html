@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<!-- layout:decorate="~{fragments/layout}" : fragments 폴더 layout 렌더링 -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+        /* 표의 스타일을 단순하고 깔끔하게 */     
+        table {
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            border-bottom: 1px solid #ddd;  /* 단순한 밑선 */
+            padding: 12px;  /* 여백 */
+            text-align: center;  /* 내용 중앙 정렬 */
+        }
+
+        table th {
+            background-color: #f8f9fa;  /* 배경색 밝은 회색 */
+            font-weight: bold;  /* 글자 두껍게 */
+        }
+
+        table td {
+            background-color: #fff;  /* 배경색 흰색 */
+        }
+
+        /* 상단 버튼 */
+        .btn-primary {
+            background-color: #007bff;  /* 버튼 색상 */
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;  /* 버튼 hover 색상 */
+        }
+    </style>
+</head>
+<body>
+
+	<!-- <th:block layout:fragment="content"/> -->
+	<div layout:fragment="content">
+
+    <div class="container my-5">
+        <h1 class="mb-4 text-center">게시판</h1>
+
+        <div class="text-end mb-3">
+            <a href="게시글작성.html" class="btn btn-primary">게시글 작성</a>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">작성자</th>
+                    <th scope="col">작성일</th>
+                    <th scope="col">조회수</th>
+                    <th scope="col">상세보기</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>첫 번째 게시글</td>
+                    <td>홍길동</td>
+                    <td>2025-04-08</td>
+                    <td>123</td>
+                    <td><a href="게시글상세.html?postId=1" class="btn btn-info btn-sm">자세히 보기</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>두 번째 게시글</td>
+                    <td>이순신</td>
+                    <td>2025-04-07</td>
+                    <td>98</td>
+                    <td><a href="게시글상세.html?postId=2" class="btn btn-info btn-sm">자세히 보기</a></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>세 번째 게시글</td>
+                    <td>유관순</td>
+                    <td>2025-04-06</td>
+                    <td>75</td>
+                    <td><a href="게시글상세.html?postId=3" class="btn btn-info btn-sm">자세히 보기</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+	
+	
+	</div>
+
+<!-- localhost:8383/boot3/test 호출 -->
