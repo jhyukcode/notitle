@@ -15,9 +15,12 @@ import com.company.boot001.mymember.Member;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
-@Entity @Getter @Setter
+
+
+@Entity
+@Getter
+@Setter
 public class Team {
 	@Id //1. 기본키(PK)
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 숫자자동증가(AI)
@@ -33,4 +36,5 @@ public class Team {
 	
 	@OneToMany
 	List<Member> member = new ArrayList<>();
+
 }
