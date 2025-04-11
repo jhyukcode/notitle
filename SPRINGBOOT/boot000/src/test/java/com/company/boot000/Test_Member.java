@@ -18,13 +18,13 @@ public class Test_Member {
 	
 	@Autowired MemberRepository memberRepository;
 	
-	@Disabled @Test
+	 @Test
 	void insert() {
 		Member member = new Member();
 		/*필수입력*/
-		member.setEmail("admin@company.com");
+		member.setUsername("member@company.com");
 		member.setPassword("1234");
-		member.setUsername("admin");
+		member.setName("member");
 		member.setBirthDate(LocalDate.parse("2001-09-01"));
 		/*선택입력*/
 		member.setGender('0');
@@ -35,24 +35,30 @@ public class Test_Member {
 	
 	@Disabled @Test
 	void selectAll() {
-		List<Member> member = new ArrayList<>();
-		member = memberRepository.findAll();
-		System.out.println(member);
+		List<Member> list = new ArrayList<>();
+		list = memberRepository.findAll();
+		System.out.println(list);
 	}
 	
-	@Test
+	@Disabled @Test
 	void selectOne() {
-		Optional<Member> member = memberRepository.findById(2L);
-		if(member.isPresent()) {
-			System.out.println(member);
+		Optional<Member> list = memberRepository.findById(2L);
+		if(list.isPresent()) {
+			System.out.println(list);
 		} else { System.out.println("NOT FOUND"); }
 	}
 	
-	@Disabled
+	@Disabled @Test
 	void update() {
-		Optional<Member> member = memberRepository.findById(1L);
-		if(member.isPresent()) {
-//			Member find = member;
-		}
+		Member member = memberRepository.findById(1L).get();
+		member.setGender('M');
+		memberRepository.save(member);
 	}
+	
+	@Disabled
+	void delete() {
+		Member member = memberRepository.findById(1L).get();
+		memberRepository.delete(member);
+	}
+	
 }

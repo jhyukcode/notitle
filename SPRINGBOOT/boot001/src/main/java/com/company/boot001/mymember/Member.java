@@ -1,14 +1,18 @@
 package com.company.boot001.mymember;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.company.boot001.myjpa.ChatRoom;
 import com.company.boot001.myjpa.Team;
 
 import lombok.Getter;
@@ -34,6 +38,9 @@ public class Member {
 	@ManyToOne
 	private Team team; // 멤버는 하나의 팀을 가진다
 	// team_id 컬럼 자동 생성됨
+	
+	@ManyToMany(mappedBy="members")
+	private Set<ChatRoom> chatRooms = new HashSet<>();
 }
 /*
 	관계1
