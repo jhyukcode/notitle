@@ -1,7 +1,11 @@
 package com.company.boot000;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +18,7 @@ public class Test_Member {
 	
 	@Autowired MemberRepository memberRepository;
 	
-	@Test
+	@Disabled @Test
 	void insert() {
 		Member member = new Member();
 		/*필수입력*/
@@ -27,5 +31,28 @@ public class Test_Member {
 		member.setPhoneNumber(null);
 		member.setAddress(null);
 		memberRepository.save(member);
+	}
+	
+	@Disabled @Test
+	void selectAll() {
+		List<Member> member = new ArrayList<>();
+		member = memberRepository.findAll();
+		System.out.println(member);
+	}
+	
+	@Test
+	void selectOne() {
+		Optional<Member> member = memberRepository.findById(2L);
+		if(member.isPresent()) {
+			System.out.println(member);
+		} else { System.out.println("NOT FOUND"); }
+	}
+	
+	@Disabled
+	void update() {
+		Optional<Member> member = memberRepository.findById(1L);
+		if(member.isPresent()) {
+//			Member find = member;
+		}
 	}
 }

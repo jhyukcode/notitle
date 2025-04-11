@@ -17,7 +17,11 @@ import com.company.boot001.mymember.Member;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity @Getter @Setter
+
+
+@Entity
+@Getter
+@Setter
 public class Team {
 	@Id //1. 기본키(PK)
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 숫자자동증가(AI)
@@ -34,4 +38,5 @@ public class Team {
 	// mappedBy : 주인, 부모 | 부모가 있으면 참조할 수 있게 -> 자식
 	@OneToMany(mappedBy = "team" , cascade = CascadeType.REMOVE)
 	List<Member> member = new ArrayList<>();
+
 }
