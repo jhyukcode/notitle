@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" 
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body, html {
+      height: 100%;
+    }
+    .login-container {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      background-color: #fff;
+    }
+    .toggle-password {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container login-container">
+    <div class="login-box">
+      <h4 class="text-center mb-4">Login</h4>
+      <form  method="post"  th:action="@{/login}" >
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+            <button type="button" class="btn btn-outline-secondary toggle-password" id="togglePassword">
+              <i class="bi bi-eye"></i> <!-- 이 부분은 비밀번호 표시 아이콘입니다. -->
+            </button>
+          </div>
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap Icons CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+
+  <script>
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function () {
+      // 비밀번호 필드의 타입을 toggle (password <-> text)
+      const type = passwordField.type === 'password' ? 'text' : 'password';
+      passwordField.type = type;
+
+      // 버튼 아이콘을 변경
+      this.innerHTML = type === 'password' 
+        ? '<i class="bi bi-eye"></i>' // 눈 아이콘
+        : '<i class="bi bi-eye-slash"></i>'; // 눈이 가려진 아이콘
+    });
+  </script>
+</body>
+</html>

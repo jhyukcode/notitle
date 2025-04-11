@@ -17,14 +17,14 @@ import lombok.ToString;
 public class Member {
 	/* 필수정보 */
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
-	@Column(unique = true, nullable = false)private String email;
-	@Column(nullable = false)private String password;
 	@Column(unique=true, nullable = false)private String username;
+	@Column(nullable = false)private String password;
+	@Column(nullable = false)private String name;
 	@Column(updatable = false, nullable = false)private LocalDateTime created_at = LocalDateTime.now();
 	@Column(updatable = false,  nullable = false)private LocalDate birthDate; 
 	
 	/* 선택정보 */
-	@Column(nullable = true)private char gender;
+	@Column(nullable = true)private char gender; // 생년월일과 통합
 	private String address;
 	private String phoneNumber;
 }
