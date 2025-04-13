@@ -15,7 +15,8 @@ public class MemberService {
 	
 	//insert
 	public Member insertMember(Member member) {  
-		//		셋팅				암호화				비밀번호
+		member.setMember_warning(0);
+		member.setMember_tier('M');
 		member.setPassword(passwordEncoder.encode( member.getPassword()  ));
 		return memberRepository.save(member);
 	}
@@ -30,6 +31,17 @@ public class MemberService {
 		return memberRepository.findById(id).get();
 	}
 	 
+	//update / updatePass
+	public int updateByPass( Member member, String old  ) {
+		return memberRepository.updateByIdAndPassword(
+					member.getPassword(), old, member.getId()
+			   ); 
+	}
+	public Member updateByEmail(Member member) {
+		Member find = memberRepository.findById(member.getId()).get();
+		find.setEmail(member.getEmail());
+		return memberRepository.save(find);
+	} 
 	//delete
 	public void deleteMember(Long id) {
 		Member find = memberRepository.findById(id).get();

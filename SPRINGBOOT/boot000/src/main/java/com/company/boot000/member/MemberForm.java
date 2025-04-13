@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter  @Setter
 public class MemberForm { // memberForm	 
-	@NotEmpty(message="이메일 필수 항목입니다.")
+	@NotEmpty(message="사용자 ID는 필수 항목입니다.")
 	@Size(min=4, max=20)
 	private String username;
 
@@ -18,8 +18,17 @@ public class MemberForm { // memberForm
 	@NotEmpty(message="비밀번호 확인은 항목입니다.")
 	private String password2; 
 	
-	@NotEmpty(message="이름 항목입니다.")
-	private String name;
+	@NotEmpty(message="이메일은 필수 항목입니다.")
+	private String email;
+	
+	@NotEmpty(message="지번은 필수 항목입니다.")
+	private String address_jibun;
+	
+	@NotEmpty(message="도로명은 필수 항목입니다.")
+	private String address_road;
+	
+	@NotEmpty(message="상세주소는 필수 항목입니다.")
+	private String address_detail;
 }
 
 //https://beanvalidation.org/
