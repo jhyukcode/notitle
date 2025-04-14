@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<!-- ##1 -->
+<head>
+<meta charset="UTF-8">
+<title>새 사용자 가입</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container my-5" style="max-width: 600px;">
+    <h3 class="text-center mb-4">회원가입</h3>
+
+    <form method="post" th:action="@{/member/join}" th:object="${memberForm}" class="needs-validation" novalidate>
+        
+        <!-- 오류 발생 -->
+        <div class="alert alert-danger text-center" role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err: ${#fields.allErrors()}" th:text="${err}"></div>
+        </div>
+
+        <!-- 아이디 -->
+        <div class="form-floating mb-3">
+            <input type="text" name="username" id="username" class="form-control" th:field="*{username}" placeholder="아이디">
+            <label for="username">아이디</label>
+        </div>
+
+        <!-- 비밀번호 -->
+        <div class="form-floating mb-3">
+            <input type="password" name="password" id="password" class="form-control" th:field="*{password}" placeholder="비밀번호">
+            <label for="password">비밀번호</label>
+        </div>
+
+        <!-- 비밀번호 확인 -->
+        <div class="form-floating mb-3">
+            <input type="password" name="password2" id="password2" class="form-control" th:field="*{password2}" placeholder="비밀번호확인">
+            <label for="password2">비밀번호 확인</label>
+        </div>
+
+        <!-- 이메일 -->
+        <div class="form-floating mb-3">
+            <input type="email" name="email" id="email" class="form-control" th:field="*{email}" placeholder="이메일">
+            <label for="email">이메일</label>
+        </div>
+
+        <!-- 주소 -->
+        <div class="mb-3">
+            <label class="form-label">주소</label>
+
+            <!-- 우편번호 + 검색 버튼 -->
+            <div class="row g-2 mb-2">
+                <div class="col-md-6">
+                    <input type="text" name="address_jibun" id="address_jibun" class="form-control" placeholder="우편번호" th:field="*{address_jibun}">
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-outline-primary w-100" onclick="addressFinder()">검색</button>
+                </div>
+            </div>
+
+            <!-- 도로명 / 지번 주소 -->
+            <div class="row g-2 mb-2">
+                <div class="col-md-6">
+                    <input type="text" name="address_jibun" id="address_road" class="form-control" th:field="*{address_road}" placeholder="도로명주소">
+                </div>
+                <div class="col-md-6">
+                    <input type="text" name="address_jibun" id="address_jibun" class="form-control" th:field="*{address_jibun}" placeholder="지번주소">
+                </div>
+            </div>
+
+            <!-- 상세 주소 -->
+            <div class="mb-3">
+                <input type="text" name="address_detai" id="address_detai" class="form-control" th:field="*{address_detail}" placeholder="상세주소">
+            </div>
+        </div>
+
+        <!-- 제출/취소 버튼 -->
+        <div class="d-flex justify-content-between">
+            <input type="submit" class="btn btn-primary w-50 me-2" value="회원가입" />
+            <input type="reset" class="btn btn-outline-secondary w-50" value="취소" />
+        </div>
+    </form>
+</div>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script>
+		function addressFinder() {
+		    new daum.Postcode({
+		        oncomplete: function(data) {
+		            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+		            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+		        }
+		    }).open();
+		}
+		</script>
+	</div>
+</body>
+</html>

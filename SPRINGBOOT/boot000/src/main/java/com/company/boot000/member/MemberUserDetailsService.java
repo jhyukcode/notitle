@@ -24,14 +24,14 @@ public class MemberUserDetailsService implements UserDetailsService{
 		if(find.isEmpty()) {  throw new UsernameNotFoundException("사용자를 확인해주세요."); }
 		
 		Member member = find.get();
-		/// 권한
+		
 		List<GrantedAuthority>  authorities = new ArrayList<>();
 		if( "admin".equals(username)) {
 			authorities.add( new SimpleGrantedAuthority( MemberRole.ADMIN.getValue() ));
 		}else {
 			authorities.add( new SimpleGrantedAuthority(MemberRole.MEMBER.getValue()));
 		} 
-		return new User(member.getUsername(), member.getPassword(), authorities);
+		return new User(  member.getUsername() , member.getPassword(), authorities);
 	}
 
 } 
