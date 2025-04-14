@@ -1,6 +1,6 @@
 package com.company.boot000.member;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,28 +13,31 @@ import lombok.Setter;
 
 @Entity  @Getter  @Setter
 public class Member {
-	// DB 순번
+	// DB id
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	// 회원 계정 정보
-	@Column(unique=true)
-	private String username; // 아이디
-	private String password; // 비밀번호
-	@Column(unique=true) private String email; // 이메일
-	private Integer member_warning; // 패널티 횟수
+	// 계정 정보
+	@Column(unique=true, name="member_id", nullable=false) private String memberId; // 아이디
+	@Column(name="member_pass", nullable=false) private String memberPass; 			// 비밀번호
 	
-	private char member_tier; // 멤버 관리자/일반 구분
+	// 사용자 정보
+	@Column(unique=true) private String email; 			// 이메일
+	@Column(nullable=false) private String realName;	// 실명
+	private String displayName;							// 표시되는 이름
+	private String phoneNumber;							// 휴대전화
+	private LocalDate birthDate;						// 생년월일
+	private char gender;								// 성별
 	
-	// 가입자 주소 정보
-	private String address_road; 	// 도로명
-	private String address_jibun;	// 지번
-	private String address_detail;	// 상세
+	// 사용자 실주소
+	@Column(name="address_road")private String addressRoad; 	// 도로명
+	@Column(name="address_jibun")private String addressJibun;	// 지번
+	@Column(name="address_detail")private String addressDetail;	// 상세
 	
-	
-	@Column(updatable = false)
-	private LocalDateTime member_join_date = LocalDateTime.now(); // 회원가입일
-	
+	// 자동 입력
+	@Column(name="member_role")private String memberRole = "MEMBER";										// 회원구분:멤버
+	@Column(name="member_warning")private Integer memberWarning = 0;										// 회원경고:0
+	@Column(name="member_join_date")private LocalDate memberJoinDate = LocalDate.now();	// 생성일
 	
 
 }

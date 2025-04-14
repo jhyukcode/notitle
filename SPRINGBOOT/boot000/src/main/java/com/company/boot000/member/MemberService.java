@@ -15,9 +15,7 @@ public class MemberService {
 	
 	//insert
 	public Member insertMember(Member member) {  
-		member.setMember_warning(0);
-		member.setMember_tier('M');
-		member.setPassword(passwordEncoder.encode( member.getPassword()  ));
+		member.setMemberPass(passwordEncoder.encode( member.getMemberPass()  ));
 		return memberRepository.save(member);
 	}
 	
@@ -34,7 +32,7 @@ public class MemberService {
 	//update / updatePass
 	public int updateByPass( Member member, String old  ) {
 		return memberRepository.updateByIdAndPassword(
-					member.getPassword(), old, member.getId()
+					member.getMemberPass(), old, member.getId()
 			   ); 
 	}
 	public Member updateByEmail(Member member) {

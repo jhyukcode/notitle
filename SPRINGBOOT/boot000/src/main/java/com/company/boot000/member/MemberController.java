@@ -1,5 +1,8 @@
 package com.company.boot000.member;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +33,7 @@ public class MemberController {
 	public String join(@Valid MemberForm memberForm , BindingResult bindingResult) {  
 		
 		if(bindingResult.hasErrors()) { return "member/join"; }
-		if( !memberForm.getPassword().equals(  memberForm.getPassword2()) ) {
+		if( !memberForm.getMemberPass().equals(  memberForm.getPassword2()) ) {
 			//bindingResult.rejectValue(필드명 , 오류코드, 에러메시지)
 			bindingResult.rejectValue("password2", "pawordInCorrect","패스워드를 확인해주세요");
 			return "member/join"; 
@@ -38,9 +41,13 @@ public class MemberController {
 		
 		try {
 			Member  member = new Member();
-			member.setUsername(  memberForm.getUsername() );
+			member.setMemberId(  memberForm.getMemberId() );
+			member.setMemberPass(  memberForm.getMemberPass() );
 			member.setEmail(  memberForm.getEmail() );
-			member.setPassword(  memberForm.getPassword() );
+			member.setBirthDate( memberForm.getBirthDate() );
+			member.setAddressJibun(memberForm.getAddressJibun());
+			member.setAddressRoad(memberForm.getAddressRoad());
+			member.setAddressDetail(memberForm.getAddressDetail());
 			service.insertMember(member);
 		}catch(DataIntegrityViolationException e) { // 무결성- 중복키, 외래키제약, 데이터형식불일치
 			e.printStackTrace();
