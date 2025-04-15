@@ -1,5 +1,6 @@
 package com.company.boot000.member;
 
+import java.net.InetAddress;
 import java.util.List;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,10 +15,14 @@ public class MemberService {
 	private final PasswordEncoder    passwordEncoder;  // SecurityConfig
 	
 	//insert
-	public Member insertMember(Member member) {  
-		member.setMember_warning(0);
-		member.setMember_tier('M');
-		member.setPassword(passwordEncoder.encode( member.getPassword()  ));
+	public Member insertMember(Member member) {
+		Member_Status status = new Member_Status();
+		status.setId(1);
+		try {
+		member.setJoinIp(InetAddress.getLocalHost().getHostAddress());
+		member.setMemberStatus(status);
+		member.setMemberPass(passwordEncoder.encode( member.getMemberPass()  ));
+		} catch (Exception e) { e.printStackTrace();}
 		return memberRepository.save(member);
 	}
 	
@@ -34,7 +39,7 @@ public class MemberService {
 	//update / updatePass
 	public int updateByPass( Member member, String old  ) {
 		return memberRepository.updateByIdAndPassword(
-					member.getPassword(), old, member.getId()
+					member.getMemberPass(), old, member.getId()
 			   ); 
 	}
 	public Member updateByEmail(Member member) {

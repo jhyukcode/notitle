@@ -19,19 +19,19 @@ import lombok.RequiredArgsConstructor;
 public class MemberUserDetailsService implements UserDetailsService{
 	private final MemberRepository   memberRepository;
 	
-	@Override public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Member> find = memberRepository.findByUsername(username);
+	@Override public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
+		Optional<Member> find = memberRepository.findByMemberId(memberId);
 		if(find.isEmpty()) {  throw new UsernameNotFoundException("사용자를 확인해주세요."); }
 		
 		Member member = find.get();
 		
 		List<GrantedAuthority>  authorities = new ArrayList<>();
-		if( "admin".equals(username)) {
+		if( "admin".equals(memberId)) {
 			authorities.add( new SimpleGrantedAuthority( MemberRole.ADMIN.getValue() ));
 		}else {
 			authorities.add( new SimpleGrantedAuthority(MemberRole.MEMBER.getValue()));
 		} 
-		return new User(  member.getUsername() , member.getPassword(), authorities);
+		return new User(  member.getMemberId() , member.getMemberPass(), authorities);
 	}
 
 } 
