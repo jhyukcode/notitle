@@ -12,7 +12,7 @@ public interface MemberRepository  extends JpaRepository<Member, Long>{
 	
 	@Modifying  
 	@Transactional  
-	@Query("update Member m set m.password=:password where m.password=:old  and m.id=:id")
+	@Query("update Member m set m.memberPass=:password where m.memberPass=:old  and m.id=:id")
 	int updateByIdAndPassword(String password, String old, Long id);
 	
 }

@@ -23,8 +23,17 @@ public class MemberForm { // memberForm
 	@NotEmpty(message="비밀번호 확인은 항목입니다.")
 	private String password2; 
 	
+	@NotEmpty(message="실명은 필수 항목입니다.")
+	private String realName;
+	
+	@NotEmpty(message="휴대폰 번호는 필수 항목입니다.")
+	private String mobileNumber;
+	
 	@NotEmpty(message="이메일은 필수 항목입니다.")
 	private String email;
+	
+	@NotNull(message="지번은 필수 항목입니다.")
+	private String addressPost;
 	
 	@NotEmpty(message="지번은 필수 항목입니다.")
 	private String addressJibun;
@@ -39,6 +48,8 @@ public class MemberForm { // memberForm
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthDate;
 
+	@NotEmpty(message="별명은 필수 항목입니다.")
+	private String displayName;
 }
 
 //https://beanvalidation.org/
