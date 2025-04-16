@@ -24,15 +24,15 @@ public class Member {
 	@Column(name="member_pass", nullable=false) private String memberPass; 			// 비밀번호
 	
 	// 사용자 정보
-	@Column(name="member_email", unique=true, nullable=false) private String email; 			// 이메일
-	@Column(name="member_real_name", nullable=false) private String realName;	// 실명
-	@Column(name="member_display_name", nullable=false)private String displayName;				// 표시되는 이름
-	@Column(name="member_mobile_number", nullable=false)private String mobileNumber;			// 휴대전화
-	@Column(name="member_birth_date", nullable=false)private LocalDate birthDate;				// 생년월일
-	@Column(name="member_gender", nullable=false)private char gender;							// 성별
+	@Column(name="member_email", unique=true, nullable=false) private String email; 	// 이메일
+	@Column(name="member_real_name", nullable=false) private String realName;			// 실명
+	@Column(name="member_display_name", nullable=false)private String displayName;		// 표시되는 이름
+	@Column(name="member_mobile_number", nullable=false)private String mobileNumber;	// 휴대전화
+	@Column(name="member_birth_date", nullable=false)private LocalDate birthDate;		// 생년월일
+	@Column(name="member_gender", nullable=false)private char gender;					// 성별
 	
 	// 사용자 실주소
-	@Column(name="address_post", nullable=false)	private String addressPost;		//우편 번호
+	@Column(name="address_post", nullable=false)	private String addressPost;	// 우편번호
 	@Column(name="address_road", nullable=false)	private String addressRoad; 	// 도로명
 	@Column(name="address_jibun", nullable=false)	private String addressJibun;	// 지번
 	@Column(name="address_detail", nullable=false)	private String addressDetail;	// 상세

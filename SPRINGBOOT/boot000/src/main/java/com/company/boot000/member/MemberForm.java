@@ -32,13 +32,14 @@ public class MemberForm { // memberForm
 	@NotEmpty(message="이메일은 필수 항목입니다.")
 	private String email;
 	
-	@NotNull(message="지번은 필수 항목입니다.")
+	@NotNull(message="성별")
+	private char gender;
+	
+	@NotNull(message="우편번호는 필수 항목입니다.")
 	private String addressPost;
 	
-	@NotEmpty(message="지번은 필수 항목입니다.")
 	private String addressJibun;
 	
-	@NotEmpty(message="도로명은 필수 항목입니다.")
 	private String addressRoad;
 	
 	@NotEmpty(message="상세주소는 필수 항목입니다.")

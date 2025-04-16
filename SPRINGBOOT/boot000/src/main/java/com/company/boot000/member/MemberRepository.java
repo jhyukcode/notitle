@@ -15,6 +15,10 @@ public interface MemberRepository  extends JpaRepository<Member, Long>{
 	@Query("update Member m set m.memberPass=:password where m.memberPass=:old  and m.id=:id")
 	int updateByIdAndPassword(String password, String old, Long id);
 	
+
+	 @Query("select m.memberId from Member m where m.realName=:name and m.mobileNumber=:mobile")
+	 Optional<String> findIdByRealNameAndMobileNumber(String name, String mobile);
+	
 }
 
 

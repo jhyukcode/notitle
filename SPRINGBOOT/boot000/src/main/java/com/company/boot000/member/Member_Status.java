@@ -13,4 +13,5 @@ public class Member_Status {
 	@Id private Integer id;
 	
 	@Column(name="status", nullable=false)private String status;
+	
 }

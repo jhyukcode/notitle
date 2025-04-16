@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<!-- layout:decorate="~{fragments/layout}" : fragments 폴더 layout 렌더링 -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<!-- <th:block layout:fragment="content"/> -->
+<div layout:fragment="content">
+
+	<div class="container mt-5">
+		<!-- 게시글 상세보기 -->
+		<div class="card shadow-sm">
+			<div class="card-header"
+				style="background-color: #6c757d; color: #ffffff;">
+				<!-- 게시글 제목을 카드 헤더로 이동 -->
+				<h4 class="mb-0" th:text="${dto.btitle}"></h4>
+			</div>
+
+			<div class="card-body"
+				style="background-color: #f8f9fa; color: #343a40;">
+				<!-- 작성자 및 작성일 -->
+				<div class="mb-3">
+					<span class="badge bg-info text-dark" th:text="${dto.member.name}"></span> 
+					<span class="badge bg-warning text-dark" th:text="${ #temporals.format(dto.create_date, 'yyyy-MM-dd HH:mm')}"></span>
+					<span class="badge bg-dark text-white" th:text="${dto.bhit}"></span>
+				</div>
+
+				<!-- 내용 -->
+				<div class="mb-3" style="white-space: pre-wrap;">
+					<textarea  th:text="${dto.bcontent}" readonly  class="form-control"></textarea>
+				</div>
+				
+				<!-- 이미지 -->
+				<div class="mb-3">
+					<p>
+						<img th:src="@{'/upload/'+${dto.bfile}}" th:alt="${dto.btitle}" style="width: 200px"/>
+					</p>
+				</div>
+
+				<!-- 첨부파일 (있는 경우) -->
+				<div class="mb-3">
+					<div class="border p-3"
+						style="font-size: 0.85rem; background-color: #e9ecef;">
+						<label for="file" class="form-label" style="color: #343a40;">첨부파일</label>
+						<input type="file" class="form-control" id="bfile" name="bfile" style="border-radius: 10px;">
+						<div>
+							<a href="#" class="text-decoration-none" target="_blank">첨부파일
+								다운로드</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 수정 및 삭제 버튼 -->
+			<div class="card-footer d-flex justify-content-end">
+				<a th:href="@{|/board/update/${dto.id}|}" class="btn btn-outline-warning ms-2">수정</a> 
+				<a th:href="@{|/board/delete/${dto.id}|}" class="btn btn-outline-danger ms-2">삭제</a>
+				<a th:href="@{/board/list}" class="btn btn-outline-success ms-2">목록</a>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+</div>

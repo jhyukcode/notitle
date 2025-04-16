@@ -1,7 +1,9 @@
 package com.company.boot000.member;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,19 +13,28 @@ import lombok.RequiredArgsConstructor;
 @Service  //##1
 @RequiredArgsConstructor
 public class MemberService {
+	
+	
+	
 	private final MemberRepository   memberRepository;
 	private final PasswordEncoder    passwordEncoder;  // SecurityConfig
+	private final MemberStatusRepository memberStatusRepository;
 	
 	//insert
 	public Member insertMember(Member member) {
-		Member_Status status = new Member_Status();
-		status.setId(1);
 		try {
-		member.setJoinIp(InetAddress.getLocalHost().getHostAddress());
-		member.setMemberStatus(status);
-		member.setMemberPass(passwordEncoder.encode( member.getMemberPass()  ));
-		} catch (Exception e) { e.printStackTrace();}
+			member.setJoinIp(InetAddress.getLocalHost().getHostAddress());
+			member.setMemberStatus(memberStatusRepository.findById(1).get());
+			member.setMemberPass(passwordEncoder.encode( member.getMemberPass()  ));
+		} catch (UnknownHostException e) { e.printStackTrace();}
 		return memberRepository.save(member);
+	}
+	// 실명과 휴대폰 번호로 아이디 찾기
+	public Optional<String> findId(String name, String mobile) {
+		Optional<String> find = memberRepository.findIdByRealNameAndMobileNumber(name, mobile);
+		if (find.isPresent()) {
+		return find; }
+		return Optional.empty();
 	}
 	
 	//selectAll

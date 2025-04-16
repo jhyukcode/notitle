@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<!-- layout:decorate="~{fragments/layout}" : fragments 폴더 layout 렌더링 -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<!-- <th:block layout:fragment="content"/> -->
+<div layout:fragment="content">
+
+	<div class="container mt-5">
+		<!-- 게시글 수정 폼 -->
+		<div class="card shadow-sm">
+			<div class="card-header"
+				style="background-color: #343a40; color: #f7a400;">
+				<h3 class="mb-0">게시글 수정</h3>
+			</div>
+			<div class="card-body" style="background-color: #f1f1f1;">
+				<form th:action="@{/board/update}" method="post" id="writeForm" encType="multipart/form-data"
+					onsubmit="return form()">
+					<!-- 제목 -->
+					<div class="mb-3">
+						<label for="btitle" class="form-label" style="color: #343a40;">제목</label>
+						<input type="text" class="form-control" id="btitle" name="btitle"
+							th:value="${dto.btitle}">
+					</div>
+
+					<!-- 이름과 비밀번호는 같은 줄에 배치 -->
+					<div class="mb-3 row">
+						<!-- 이름 -->
+						<div class="col-md-6">
+							<label for="member" class="form-label" style="color: #343a40;">이름</label>
+							<input type="text" class="form-control" id="member"
+								name="member_name" th:value="${dto.member.name}" readonly
+								style="background-color: #e9ecef; color: #6c757d; border: 1px solid #ced4da;">
+								<input type="hidden"   name="id"  id="id"	th:value="${dto.id}" />
+							<!-- 읽기 전용 필드 배경색을 연한 회색으로 변경하고, 텍스트 색을 연하게 -->
+						</div>
+
+						<!-- 비밀번호 -->
+						<div class="col-md-6">
+							<label for="bpass" class="form-label" style="color: #343a40;">비밀번호</label>
+							<input type="password" class="form-control" id="bpass"
+								name="bpass" placeholder="비밀번호를 입력하세요">
+						</div>
+					</div>
+
+					<!-- 내용 -->
+					<div class="mb-3">
+						<label for="bcontent" class="form-label" style="color: #343a40;">내용</label>
+						<textarea class="form-control" id="bcontent" name="bcontent"
+							rows="5" th:text="${dto.bcontent}"></textarea>
+					</div>
+
+					<!-- 첨부파일 : 새 파일로 수정 시 -->
+					<div class="mb-3">
+						<label for="file" class="form-label" style="color: #343a40;">첨부파일</label>
+						<input type="file" class="form-control" id="file" name="file">
+					</div>
+					<!-- 첨부파일 : 오리진 -->
+					<div class="mb-4">
+						<label for="bfile" class="form-label" style="font-size: 1.1rem; color: #333;">첨부파일</label> 
+						<input type="text" class="form-control" id="bfile" name="bfile" th:value="${dto.bfile}" style="border-radius: 10px;">
+					</div>
+					
+
+					<div class="d-flex justify-content-end">
+						<!-- 버튼 색상 수정: 주황색 -->
+						<button type="submit" class="btn" style="background-color: #f7a400; color: white;">수정하기</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+				function form() {
+					let bname = document.getElementById("bname");
+					let btitle = document.getElementById("btitle");
+					let bcontent = document.getElementById("bcontent");
+
+					if (bname.value == "") {
+						alert("빈칸입니다");
+						bname.focus();
+						return false;
+					}
+					if (btitle.value == "") {
+						alert("빈칸입니다");
+						btitle.focus();
+						return false;
+					}
+					if (bcontent.value == "") {
+						alert("빈칸입니다");
+						bcontent.focus();
+						return false;
+					}
+				}
+	</script>
+
+</div>
+
+</div>
