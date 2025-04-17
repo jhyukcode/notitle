@@ -29,12 +29,20 @@ public class MemberService {
 		} catch (UnknownHostException e) { e.printStackTrace();}
 		return memberRepository.save(member);
 	}
-	// 실명과 휴대폰 번호로 아이디 찾기
-	public Optional<String> findId(String name, String mobile) {
-		Optional<String> find = memberRepository.findIdByRealNameAndMobileNumber(name, mobile);
-		if (find.isPresent()) {
-		return find; }
-		return Optional.empty();
+	// 실명과 휴대폰 번호로 id찾기
+	public Long forFindId(String name, String mobile) {
+		Long findid = memberRepository.findIdByRealNameAndMobile(name, mobile);
+		return findid;
+	}
+	// 아이디 실명 휴대폰 번호로 id찾기
+	public Long forFindPass(String id, String name, String mobile) {
+		Long findid = memberRepository.findIdByMemberIdNameAndMobile(id, name, mobile);
+		return findid;
+	}
+	// id로 비밀번호 변경하기
+	public void updatePass(Long id, String pass) {
+		pass = passwordEncoder.encode(pass);
+		memberRepository.updatePasswordById(id, pass);
 	}
 	
 	//selectAll

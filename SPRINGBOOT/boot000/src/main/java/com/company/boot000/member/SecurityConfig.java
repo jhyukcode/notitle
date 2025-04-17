@@ -32,6 +32,8 @@ public class SecurityConfig {
 		).formLogin(  // 1-2. form 만든폼 - login
 			(formLogin)-> 	formLogin
 								.loginPage("/member/login")
+								.usernameParameter("memberId")
+								.passwordParameter("memberPass")
 								.defaultSuccessUrl("/member/member")
 		).logout( // 1-3. logout
 			(logout)-> 	 logout

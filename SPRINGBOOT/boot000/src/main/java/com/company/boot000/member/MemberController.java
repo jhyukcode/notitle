@@ -67,21 +67,58 @@ public class MemberController {
 		
 		return "member/login"; 
 	}
-	
+
+	/* 아이디 찾기 */
+	/* 아이디 찾기 */
 	@GetMapping("/member/findid")
 	public String findid() { return "member/findid";}
 	
 	@PostMapping("/member/findid")
-	public String findid(@RequestParam("name") String name, @RequestParam("mobile") String mobile, Model model) {
-		Optional<String> findId = service.findId(name, mobile);
-		if (findId.isPresent()) { 
-			model.addAttribute("found", findId.get());
-			return "member/foundid"; }
-		else { 
-			model.addAttribute("error", "일치하는 아이디를 찾지 못했습니다");
-			return "member/findid"; }
+	public String findid(String realName, String mobileNumber, Model model) {
+		Long find = service.forFindId(realName, mobileNumber);
+		Member member = new Member();
+		
+		if (find==null) {
+			model.addAttribute("error", "계정이 존재하지 않습니다");
+			return "member/findid";
+		}
+		member = service.selectMember((long)find);
+		model.addAttribute("found", member.getMemberId());
+		model.addAttribute("realName", member.getRealName());
+		return "member/foundid";
 	}
 	
 	@GetMapping("/member/foundid")
 	public String foundid() { return "member/foundid";}
+	/* 아이디 찾기 */
+	/* 아이디 찾기 */
+		
+	
+	/* 비밀번호 찾기 */
+	/* 비밀번호 찾기 */
+	@GetMapping("/member/findpw")
+	public String findpw() { return "member/findpw"; }
+	
+	@PostMapping("/member/findpw")
+	public String findpw(String memberId, String realName, String mobileNumber, Model model) {
+		Long findpw = service.forFindPass(memberId, realName, mobileNumber);
+		System.out.println(findpw);
+		if (findpw == null) {
+			model.addAttribute("error", "일치하는 계정 없음");
+			return "member/findpw";
+		}
+		model.addAttribute("success", findpw);
+		return "member/foundpw";
+		}
+	
+	@GetMapping("/member/foundpw")
+	public String foundpw() { return "member/foundpw";}
+	
+	@PostMapping("/member/foundpw")
+	public String foundpw(Long id, String memberPass) { 
+		service.updatePass(id, memberPass);
+		return "member/login";
+	}
+	/* 비밀번호 찾기 */
+	/* 비밀번호 찾기 */
 }
