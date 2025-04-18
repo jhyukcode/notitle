@@ -24,17 +24,27 @@ body {
 	align-items: center;
 	opacity: 0;
 	border-radius: 50%;
+	align-content: flex-end;
+	align-content: space-evenly;
+
+	
 }
 </style>
 <script>
 	document.getElementById("password").style.borderColor="red";
 	document.getElementById("")
+	const cursorReact = document.querySelector("#btn");
+	cursorReact.addEventListener("mouseover", function() {
+		cursorReact.style.backgroundColor = "#e5ab9f";
+	});
+		
+	
 </script>
 </head>
 <body>
   <div class="bg"></div>
 	<div layout:fragment="content">
-
+		<img src="images/persona.png">
 		
 
 			<div class="container d-flex justify-content-center align-items-center mt-5" style="min-height: 100vh;">
