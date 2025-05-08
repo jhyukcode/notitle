@@ -1,13 +1,13 @@
-package com.company.boot000;
+package com.company;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Boot000Application {
+public class TestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Boot000Application.class, args);
+		SpringApplication.run(TestApplication.class, args);
 	}
 
 }

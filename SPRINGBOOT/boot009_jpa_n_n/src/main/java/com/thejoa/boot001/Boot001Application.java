@@ -1,13 +1,13 @@
-package com.company.boot000;
+package com.thejoa.boot001;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Boot000Application {
+public class Boot001Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Boot000Application.class, args);
+		SpringApplication.run(Boot001Application.class, args);
 	}
 
 }

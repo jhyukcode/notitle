@@ -1,0 +1,24 @@
+<meta charset="UTF-8">
+<th:block th:fragment="header">
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+		<div class="container-fluid">
+			<a class="navbar-brand fs-3 fw-bold text-white" href="/board/list">BOARD</a>
+
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link" th:href="@{/member/login}">로그인</a></li>
+					<li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link" th:href="@{/member/register}">회원가입</a></li>
+					<li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" href="" sec:authentication="principal.username"></a></li>
+					<li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link text-danger" th:href="@{/member/logout}">로그아웃</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+</th:block>

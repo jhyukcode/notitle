@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<!-- layout:decorate="~{fragments/layout}" : fragments 폴더 layout 렌더링 -->
+<head>
+<meta charset="UTF-8">
+<title>글 보기</title>
+
+
+<div layout:fragment="content">
+
+	<div class="container mt-5">
+		<div class="card shadow-sm">
+			<div class="card-header"
+				style="background-color: #6c757d; color: #ffffff;">
+				<h4 class="mb-0" th:text="${detail.btitle}"></h4>
+			</div>
+
+			<div class="card-body"
+				style="background-color: #f8f9fa; color: #343a40;">
+				<div class="mb-3">
+					<span class="badge bg-warning text-dark" th:text="${ #temporals.format(detail.create_date, 'yyyy-MM-dd HH:mm')}"></span>
+					<span class="badge bg-primary text-white" th:text="${detail.bhit}"></span>
+				</div>
+
+				<div class="mb-3" style="white-space: pre-wrap;">
+					<textarea  th:text="${detail.bcontent}" readonly  class="form-control"></textarea>
+				</div>
+			</div>
+
+			<!-- 수정 및 삭제 버튼 -->
+			<div class="card-footer d-flex justify-content-end">
+				<a th:href="@{|/board/update/${detail.id}|}" class="btn btn-outline-warning ms-2">수정</a> 
+				<a th:href="@{|/board/delete/${detail.id}|}" class="btn btn-outline-danger ms-2">삭제</a>
+				<a th:href="@{/board/list}" class="btn btn-outline-success ms-2">목록</a>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+</div>

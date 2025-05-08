@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="UTF-8">
+<title>보드 메인</title>
+</head>
+	<div layout:fragment="content">
+	<!-- ! -->
+	<div class="container mt-5">
+	    <div class="text-end mb-3">
+	        <a th:href="@{/board/insert}" class="btn btn-primary">게시글 작성</a>
+	    </div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col" class="col-1">번호</th>
+					<th scope="col" class="col-6">제목</th>
+					<th scope="col" class="col-3">작성일</th>
+					<th scope="col" class="col-2">조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dto, state : ${list}">
+					<td th:text="${list.size() - state.index}"></td>
+					<td><a th:href="@{/board/detail/{id}(id=${dto.id})}" th:text="${dto.btitle}" style="color:black; text-decoration:none;"></a></td>
+					<td th:text="${#temporals.format(dto.create_date, 'yy.MM.dd HH:mm')}"></td>
+					<td th:text="${dto.bhit}"></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<!-- ! -->
+	</div>
+</html>

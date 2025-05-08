@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+</head>
+	<div layout:fragment="content">
+	<!-- ! -->
+	
+		<div class="container-fluid d-flex justify-content-center align-items-center" style="height: 760px; background-color: #515151;">
+		    <div class="card shadow-lg p-5" style="height: 80%; width: 22%;">
+		        <h1 class="text-center mb-4 fw-bold">회원가입</h1>
+		        <form th:action="@{/member/register}" th:object="${memberForm}" method="post" class="mt-5 d-flex flex-column align-items-center">
+		        
+		            <div class="form-floating mb-3 w-100">
+		                <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="이메일" required>
+		                <label for="email">이메일</label>
+		                <div class="resultEmail mt-1 ps-2 small"></div>
+		            </div>
+		
+		            <div class="form-floating mb-3 w-100">
+		                <input type="password" class="form-control" th:field="*{password}" id="password" placeholder="비밀번호" required>
+		                <label for="password">비밀번호</label>
+		            </div>
+
+		            <div class="form-floating mb-3 w-100">
+		                <input type="password" class="form-control" th:field="*{password2}" id="password2" placeholder="비밀번호 확인" required>
+		                <label for="password2">비밀번호 확인</label>
+		            </div>
+
+		            <div class="form-floating mb-4 w-100">
+		                <input type="text" class="form-control" th:field="*{username}" id="username" placeholder="사용할 이름" required>
+		                <label for="username">이름</label>
+		            </div>
+		
+		            <button type="submit" class="btn btn-outline-secondary w-50">회원가입</button>
+		        </form>
+		    </div>
+		</div>
+		
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+	$(document).ready(function() {
+	    $('#email').on('keyup', function () {
+	        const email = $(this).val().trim();
+	
+	        if (email.length === 0) {
+	            $(".resultEmail").text("");
+	            $("#email").removeClass("is-valid is-invalid");
+	            return;
+	        }
+	
+	        reduplicationEmailCheck(email);
+	    });
+	
+	    function reduplicationEmailCheck(email) {
+	        $.ajax({
+	            url: "/member/register/reduplicationEmail/" + encodeURIComponent(email),
+	            type: "GET",
+	            dataType: "json",
+	            success: function(json) {
+	                if (json.resultEmail === "사용가능") {
+	                    $(".resultEmail")
+	                        .removeClass("fail text-danger")
+	                        .addClass("success text-success")
+	                        .html("✔️ 사용 가능한 이메일입니다!");
+	                    $("#email")
+	                        .removeClass("is-invalid")
+	                        .addClass("is-valid");
+	                } else {
+	                    $(".resultEmail")
+	                        .removeClass("success text-success")
+	                        .addClass("fail text-danger")
+	                        .html("❌ 이미 사용 중인 이메일입니다.");
+	                    $("#email")
+	                        .removeClass("is-valid")
+	                        .addClass("is-invalid");
+	                }
+	            },
+	            error: function(xhr, status, msg) {
+	                console.error("에러 발생:", status + " / " + msg);
+	            }
+	        });
+	    }
+	});
+</script>
+	<!-- ! -->
+	</div>
+
+</html>
